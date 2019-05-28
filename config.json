@@ -1,0 +1,64 @@
+{
+  "name": "Heart Transplant",
+
+  "namespace":"Stanford\\HeartTransplant",
+
+  "description": "A module for the Heart Transplant Database",
+
+  "authors": [
+    {
+      "name": "Jae Lee",
+      "email": "jael@stanford.edu",
+      "institution": "Stanford University"
+    }
+  ],
+
+  "links": {
+    "control-center": [
+    ],
+    "project": [
+      {
+        "name": "Enter a Transplant Entry",
+        "icon": "gear",
+        "url": "src/NewTransplantEntry.php"
+      },
+      {
+        "name": "Patient Homepage",
+        "icon": "gear",
+        "url": "PatientHomepage.php"
+      }
+    ]
+  },
+
+  "system-settings": [
+    {
+      "key": "enable-system-debug-logging",
+      "name": "<b>Enable Debug Logging (system-wide)</b>",
+      "required": false,
+      "type": "checkbox"
+    }
+  ],
+
+  "project-settings": [
+    {
+      "key": "demo-fields",
+      "name": "<b>DEMOGRAPHICS: Select fields to display</b>",
+      "required": false,
+      "type": "field-list",
+      "repeatable": true
+    },
+    {
+      "key": "test-fields",
+      "name": "<b>TESTS: Select fields to display</b>",
+      "required": false,
+      "type": "field-list",
+      "repeatable": true
+    },
+    {
+      "key": "enable-project-debug-logging",
+      "name": "<b>Enable Debug Logging</b></h6><i> (Requires emLogger)</i><br>If you have questions enabling debugging, please contact the REDCap team for help.",
+      "required": false,
+      "type": "checkbox"
+    }
+  ]
+}
