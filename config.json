@@ -23,12 +23,21 @@
         "url": "src/NewTransplantEntry.php"
       },
       {
+        "name": "Enter death data for existing record",
+        "icon": "gear",
+        "url": "src/EditDeathData.php"
+      },
+      {
         "name": "Patient Homepage",
         "icon": "gear",
         "url": "PatientHomepage.php"
       }
     ]
   },
+  "no-auth-pages": [
+    "src/EditDeathData",
+    "src/NewTransplantEntry"
+  ],
 
   "system-settings": [
     {

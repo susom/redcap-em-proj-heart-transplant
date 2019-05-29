@@ -19,6 +19,66 @@ class HeartTransplant extends \ExternalModules\AbstractExternalModule {
 
     use emLoggerTrait;
 
+
+    function editDeathData($coded, $text, $date) {
+
+        //check that the MRN and DOT finds a match
+        $codedArray = array();
+        foreach ($coded as $field_name => $field_value) {
+            $codedArray[$field_name] = $field_value;
+        }
+
+        $textArray = array();
+        foreach ($text as $field_name => $field_value) {
+            $textArray[$field_name] = $field_value;
+        }
+
+        $dateArray = array();
+        foreach ($date as $field_name => $field_value) {
+
+            if (isset($field_value)) {
+                $date = new \DateTime($field_value);
+                $date_str = $date->format('Y-m-d');
+
+                $dateArray[$field_name] = $date_str;
+            }
+        }
+
+        $this->emDebug($coded, $text, $date);
+
+        $mrn_fix = $textArray['mrn_fix'];
+        $dot = $dateArray['dot'];
+
+        $filter = "[mrn_fix] = '{$mrn_fix}'";
+        if (isset($dot)) {
+            $filter .= " AND [dot] = '{$dot}'";
+        }
+
+        $params = array(
+            'return_format'    => 'json',
+            //'records'          => $record,
+            //'events'           => $filter_event,
+            'fields'           => array(REDCap::getRecordIdField(), 'mrn_fix', 'dot'),
+            'filterLogic'      => $filter
+        );
+
+        $q = REDCap::getData($params);
+
+        //$this->emDebug($filter, $params, isset($dot));
+        $records = json_decode($q, true);
+
+        $this->emDebug($records);
+        if (empty($records)) {
+            return "Please check your entry! The MRN and Date of Transplant was not found.";
+        }
+
+        //save the record changes
+
+        return true;
+
+
+    }
+
     function saveNewEntry($coded, $text, $date) {
 
         $new_id = $this->getNextHighestId();
@@ -26,7 +86,7 @@ class HeartTransplant extends \ExternalModules\AbstractExternalModule {
 
         $codedArray = array();
         foreach ($coded as $field_name => $field_value) {
-            $codedArray[$field_name] = $field_value;
+            $codedArray[$field_name] = db_escape($field_value);
         }
 
         $textArray = array();

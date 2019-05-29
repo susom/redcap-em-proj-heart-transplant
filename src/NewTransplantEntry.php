@@ -3,7 +3,15 @@
 namespace Stanford\HeartTransplant;
 /*** @var \Stanford\HeartTransplant\HeartTransplant $module */
 
-$module->emDebug("Starting Heart Transplant : New Transplant Entry");
+
+$user = USERID;
+$sunet_id = $_SERVER['WEBAUTH_USER'];
+
+$module->emDebug("Starting Heart Transplant : New Transplant Entry by " . $user . " : " . $sunet_id);
+
+$api_url = $module->getUrl("src/NewTransplantEntry.php", true, true);
+$no_api_url = $module->getUrl("src/NewTransplantEntry.php", true, false);
+$module->emDebug($api_url, $no_api_url);
 
 if(isset($_POST['new_entry'])) {
     //$module->emDebug($_REQUEST);
@@ -87,7 +95,7 @@ $module->emDebug("FILE IS ".$input_array);
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js'></script>
-    <link href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css' rel='stylesheet' media='screen'></link>";
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css' rel='stylesheet' media='screen'></link>
 
     <script
             src="https://code.jquery.com/jquery-3.4.1.min.js"
@@ -109,7 +117,7 @@ $module->emDebug("FILE IS ".$input_array);
 <body>
 
 <div class="container">
-    <h2>New Transplant Entry</h2>
+    <h2>Adult Heart Transplant Intake Form</h2>
 
     <form method="POST" id="new_entry_form" action="">
 
@@ -261,22 +269,6 @@ $module->emDebug("FILE IS ".$input_array);
         <hr>
         <div class="form-group">
           <hr>
-      <h3>REFERRAL DATA</h3>
-          <hr>
-      </div>
-        <div class="form-group col-md-6">
-        <label for="dem_referral_center">Referral Center</label>
-        <select id="dem_referral_center" class="form-control">
-            <option></option>
-            <option value="1">Stanford</option>
-            <option value="2">Kaiser</option>
-            <option value="3">VA</option>
-            <option value="4">Other</option>
-        </select>
-    </div>
-        <hr>
-        <div class="form-group">
-          <hr>
       <h3>DONOR DATA</h3>
           <hr>
       </div>
@@ -397,16 +389,6 @@ $module->emDebug("FILE IS ".$input_array);
                     console.log("DONE CREATE_NEW_USER", data);
                     alert(data.msg);
                     location.reload();
-
-                    if (data.result === 'success') {
-
-                        console.log("redirecting to: ", data.link);
-                        $(location).attr('href', data.link);
-
-                    } else if (data.result === 'warn') {
-                        //alert(data.msg);
-                    }
-
                 })
                 .fail(function (data) {
                     console.log("DATA: ", data);
