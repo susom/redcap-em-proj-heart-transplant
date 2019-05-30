@@ -21,7 +21,6 @@ if(isset($_POST['edit_entry'])) {
             'result' => 'success',
             'msg'    => $status['msg']);
 
-
     } else {
         //there was an error, just return string in error
         $result = array(

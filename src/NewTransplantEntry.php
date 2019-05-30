@@ -18,26 +18,20 @@ if(isset($_POST['new_entry'])) {
 
     $status = $module->saveNewEntry($_POST['codedValues'],$_POST['textValues'],$_POST['dateValues']);
 
-    if ($status === true) {
+    if ($status['status'] === true) {
         $result = array(
             'result' => 'success',
-            'msg'    => "The form was successfully saved.");
-
+            'msg'    => $status['msg']
+        );
 
     } else {
         //there was an error, just return string in error
         $result = array(
             'result' => 'warn',
             'status' => 'Did not complete',
-            'msg' => $status
+            'msg' => $status['msg']
         );
     }
-
-    //just return whatever string
-    $result = array(
-        'result' => 'warn',
-        'msg' => $status
-    );
 
     header('Content-Type: application/json');
     print json_encode($result);
@@ -232,7 +226,7 @@ if(isset($_POST['new_entry'])) {
                 <label><input name="sex_r" id="sex_r" type="radio" value="1"> Male</label>
             </div>
             <div class="form-group col-md-4">
-            <label><Dat></Dat>e of Birth</label>
+            <label>Date of Birth</label>
                 <div class='input-group date'>
                     <input name="dob" type='text'  id='dob' class="form-control" autocomplete="off"/>
                     <span class="input-group-addon">
@@ -281,7 +275,7 @@ if(isset($_POST['new_entry'])) {
             <label for="age_d">Donor Age</label>
             <input type="text" class="form-control" id="age_d">
         </div>
-    </div>
+        </div>
         <div class="form-row">
         <div class="form-group col-md-3">
             <label for="sex_d"> Gender of Donor</label>
@@ -290,7 +284,31 @@ if(isset($_POST['new_entry'])) {
             <label><input name="sex_d" id="sex_d" type="radio" value="0"> Female</label><br>
             <label><input name="sex_d" id="sex_d" type="radio" value="1"> Male</label>
         </div>
-    </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="donor_high_risk">Meets CDC Guidelines for High Risk</label>
+                <select id="donor_high_risk" class="form-control">
+                    <option></option>
+                    <option value='1'>Yes</option>
+                    <option value='0'>No</option>
+                    <option value='98'>Unknown</option>
+                </select>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="cause_death">Cause of Death</label>
+                <select id="cause_death" class="form-control">
+                    <option></option>
+                    <option value='0'>Stroke</option>
+                    <option value='1'>GSW</option>
+                    <option value='2'>Anoxia</option>
+                    <option value='3'>Head Trauma</option>
+                    <option value='4'>Drug Intoxication</option>
+                    <option value='99'>Other</option>
+                </select>
+            </div>
+
+        </div>
 
         <button type="submit" id="new_entry" class="btn btn-primary" value="true">Submit</button>
 
@@ -333,7 +351,9 @@ if(isset($_POST['new_entry'])) {
                "sex_d" : $("#sex_d").val(),
                "dem_referral_center" : $("#dem_referral_center").val(),
                "dem_kidney_tx"   : $("#dem_kidney_tx").val(),
-               "dem_liver_tx"   : $("#dem_liver_tx").val()
+               "dem_liver_tx"   : $("#dem_liver_tx").val(),
+               "donor_high_risk" : $("#donor_high_risk").val(),
+               "cause_death"     : $("#cause_death").val()
 
            };
 
@@ -362,26 +382,20 @@ if(isset($_POST['new_entry'])) {
                 "new_entry" : true
             };
 
-
-            var formValues2 = {};
-
-
-            let form_data = $('form').serialize();
-            console.log(form_data);
-
-        let form_array = $('form').serializeArray();
-    console.log(form_array);
-
-            console.log(formValues);
-
             $.ajax({ // create an AJAX call...
                 data: formValues, // get the form data
                 method: "POST"
             })
                 .done(function (data) {
                     console.log("DONE CREATE_NEW_USER", data);
-                    alert(data.msg);
-                    location.reload();
+
+                    if (data.result === 'success') {
+                        alert(data.msg);
+                        location.reload();
+                    } else {
+                        alert(data.msg);
+                    }
+
                 })
                 .fail(function (data) {
                     console.log("DATA: ", data);
@@ -393,9 +407,6 @@ if(isset($_POST['new_entry'])) {
             return false;
 
         });
-
-
-
     });
 
 

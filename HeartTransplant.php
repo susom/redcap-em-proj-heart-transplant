@@ -109,7 +109,7 @@ class HeartTransplant extends \ExternalModules\AbstractExternalModule {
                 'msg'    => implode("\n", $msg)
             );
         } else {
-            $msg[] = "Please check your entry! The MRN and Date of Transplant was not found.";
+            $msg[] = "There was an issue editing the record. Please notify your admin.";
             $status = array(
                 'status' => false,
                 'msg'    => implode("\n", $msg)
@@ -148,6 +148,47 @@ class HeartTransplant extends \ExternalModules\AbstractExternalModule {
             }
         }
 
+        //check that the mrn_fix and dot don't already exist
+        $mrn_fix = $textArray['mrn_fix'];  //todo: check that it's only numbers
+
+        if (!is_numeric($mrn_fix)) {
+            $status = array(
+                'status' => false,
+                'msg'    => "Please check your entry! The MRN should only contain numbers."
+            );
+            return $status;
+        }
+        $dot = $dateArray['dot'];          //todo: check that it's date. should be handled by cal widget
+
+        $filter = "[mrn_fix] = '{$mrn_fix}'";
+        if (isset($dot)) {
+            $filter .= " AND [dot] = '{$dot}'";
+        }
+
+        $params = array(
+            'return_format'    => 'json',
+            //'records'          => $record,
+            //'events'           => $filter_event,
+            'fields'           => array(REDCap::getRecordIdField(), 'mrn_fix', 'dot'),
+            'filterLogic'      => $filter
+        );
+
+        $q = REDCap::getData($params);
+
+        //$this->emDebug($filter, $params, isset($dot));
+        $records = json_decode($q, true);
+
+        $this->emDebug($records);
+        if (!empty($records)) {
+
+            $status = array(
+                'status' => false,
+                'msg'    => "Please check your entry! The MRN and Date of Transplant already exists."
+            );
+            return $status;
+        }
+
+
         $data = array_merge(
             array(REDCap::getRecordIdField() => $new_id),
             $codedArray,
@@ -160,12 +201,22 @@ class HeartTransplant extends \ExternalModules\AbstractExternalModule {
         $q = REDCap::saveData('json', json_encode(array($data)));
 
         if (empty($q['errors'])) {
-            return "Successfully saved as record $new_id";
-
+            $msg[] = "Successfully saved in record $new_id";
+             $status = array(
+                'status' => true,
+                'msg'    => implode("\n", $msg)
+            );
+        } else {
+            $msg[] = "There was an issue saving this record $new_id. Please notify your admin.";
+            $status = array(
+                'status' => false,
+                'msg'    => implode("\n", $msg)
+            );
         }
         $this->emDebug($q);
         //return true;
-        return "Please notify your administrator that there was an error entering record $new_id ";
+        return $status;
+
     }
 
 
