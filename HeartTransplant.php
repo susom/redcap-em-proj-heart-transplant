@@ -69,12 +69,55 @@ class HeartTransplant extends \ExternalModules\AbstractExternalModule {
 
         $this->emDebug($records);
         if (empty($records)) {
-            return "Please check your entry! The MRN and Date of Transplant was not found.";
+
+            $status = array(
+                'status' => false,
+                'msg'    => "Please check your entry! The MRN and Date of Transplant was not found."
+            );
+            return $status;
         }
 
-        //save the record changes
+        $msg = null;
 
-        return true;
+        //todo: check that there was only one found. if multiple found, notify the admin
+        $count = sizeof($records);
+        $this->emDebug("count is $count.");
+        if ($count > 1) {
+            $msg[] = "Please notify your admin that $count records were found with this MRN  and date of transplant.";
+            $this->emDebug("MORE THAN 1 record found!");
+        }
+
+        //get the record_id from the retrieved record
+        $save_id = (current($records))[REDCap::getRecordIdField()];
+
+        //save the record changes
+        $data = array_merge(
+            array(REDCap::getRecordIdField() => $save_id),
+            $codedArray,
+            //$textArray,
+            $dateArray   //REDCap won't rewrite same value
+        );
+
+        $this->emDebug($save_id, $codedArray, $textArray, $dateArray,$data);
+
+        $q = REDCap::saveData('json', json_encode(array($data)));
+
+        if (empty($q['errors'])) {
+            $msg[] = "Successfully saved in record $save_id";
+             $status = array(
+                'status' => true,
+                'msg'    => implode("\n", $msg)
+            );
+        } else {
+            $msg[] = "Please check your entry! The MRN and Date of Transplant was not found.";
+            $status = array(
+                'status' => false,
+                'msg'    => implode("\n", $msg)
+            );
+        }
+        $this->emDebug($q);
+        return $status;
+
 
 
     }

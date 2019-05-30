@@ -45,9 +45,6 @@ if(isset($_POST['new_entry'])) {
 
 }
 
-$input_array = $module->getProjectSetting('new-input-fields');
-
-$module->emDebug("FILE IS ".$input_array);
 
 //$module->emDebug($header, "HEADER");
 //$module->emDebug($candidate, "CANDIDATE"); exit;
@@ -129,127 +126,124 @@ $module->emDebug("FILE IS ".$input_array);
             </div>
         </div>
         <div class="form-row">
-        <div class="form-group col-md-6">
-            <label for="mrn">Stanford Medical Record Number </label>
-            <input type="text" class="form-control" id="mrn_fix" placeholder="Do not include hyphens or spaces">
-        </div>
-                <div class="form-group col-md-4">
-            <label>Date of Transplant</label>
-            <div class='input-group date' id='dot'>
-                <input name="dot" id='dot' type='text' class="form-control" autocomplete="off"/>
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
+            <div class="form-group col-md-6">
+                <label for="mrn">Stanford Medical Record Number </label>
+                <input type="text" class="form-control" id="mrn_fix" placeholder="Do not include hyphens or spaces">
+            </div>
+            <div class="form-group col-md-4">
+                <label>Date of Transplant</label>
+                <div class='input-group date' id='dot'>
+                    <input name="dot" id='dot' type='text' class="form-control" autocomplete="off"/>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
             </div>
         </div>
-
-    </div>
         <hr>
         <div class="form-row">
-      <div class="form-group col-md-6">
-      <label for="first_name">First Name</label>
-      <input type="text" class="form-control" id="first_name" placeholder="First name">
-    </div>
-    <div class="form-group col-md-6">
-      <label for="last_name">Last Name</label>
-      <input type="text" class="form-control" id="last_name" placeholder="Last name">
-    </div>
-  </div>
+            <div class="form-group col-md-6">
+                <label for="first_name">First Name</label>
+                <input type="text" class="form-control" id="first_name" placeholder="First name">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="last_name">Last Name</label>
+                <input type="text" class="form-control" id="last_name" placeholder="Last name">
+            </div>
+        </div>
         <div class="form-group">
-    <label for="inputAddress">Address</label>
-    <input type="text" class="form-control" id="address_street" placeholder="1234 Main St">
-  </div>
-        <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputCity">City</label>
-      <input type="text" class="form-control" id="address_city">
-    </div>
-    <div class="form-group col-md-4">
-      <label for="inputState">State</label>
-      <select id="address_state" class="form-control">
-        <option selected>Choose...</option>
-          <option value="CA">California</option>
-	<option value="AL">Alabama</option>
-	<option value="AK">Alaska</option>
-	<option value="AZ">Arizona</option>
-	<option value="AR">Arkansas</option>
-
-	<option value="CO">Colorado</option>
-	<option value="CT">Connecticut</option>
-	<option value="DE">Delaware</option>
-	<option value="DC">District Of Columbia</option>
-	<option value="FL">Florida</option>
-	<option value="GA">Georgia</option>
-	<option value="HI">Hawaii</option>
-	<option value="ID">Idaho</option>
-	<option value="IL">Illinois</option>
-	<option value="IN">Indiana</option>
-	<option value="IA">Iowa</option>
-	<option value="KS">Kansas</option>
-	<option value="KY">Kentucky</option>
-	<option value="LA">Louisiana</option>
-	<option value="ME">Maine</option>
-	<option value="MD">Maryland</option>
-	<option value="MA">Massachusetts</option>
-	<option value="MI">Michigan</option>
-	<option value="MN">Minnesota</option>
-	<option value="MS">Mississippi</option>
-	<option value="MO">Missouri</option>
-	<option value="MT">Montana</option>
-	<option value="NE">Nebraska</option>
-	<option value="NV">Nevada</option>
-	<option value="NH">New Hampshire</option>
-	<option value="NJ">New Jersey</option>
-	<option value="NM">New Mexico</option>
-	<option value="NY">New York</option>
-	<option value="NC">North Carolina</option>
-	<option value="ND">North Dakota</option>
-	<option value="OH">Ohio</option>
-	<option value="OK">Oklahoma</option>
-	<option value="OR">Oregon</option>
-	<option value="PA">Pennsylvania</option>
-	<option value="RI">Rhode Island</option>
-	<option value="SC">South Carolina</option>
-	<option value="SD">South Dakota</option>
-	<option value="TN">Tennessee</option>
-	<option value="TX">Texas</option>
-	<option value="UT">Utah</option>
-	<option value="VT">Vermont</option>
-	<option value="VA">Virginia</option>
-	<option value="WA">Washington</option>
-	<option value="WV">West Virginia</option>
-	<option value="WI">Wisconsin</option>
-	<option value="WY">Wyoming</option>
-      </select>
-    </div>
-    <div class="form-group col-md-2">
-      <label for="inputZip">Zip</label>
-      <input type="text" class="form-control" id="address_zip">
-    </div>
-    </div>
-
-        <div class="form-row">
-        <div class="form-group col-md-3">
-            <label for="sex_r"> Gender of Recipient</label>
+            <label for="inputAddress">Address</label>
+            <input type="text" class="form-control" id="address_street" placeholder="1234 Main St">
         </div>
-        <div class="form-group col-md-3">
-            <label><input name="sex_r" id="sex_r" type="radio" value="0"> Female</label><br>
-            <label><input name="sex_r" id="sex_r" type="radio" value="1"> Male</label>
-        </div>
-        <div class="form-group col-md-4">
-            <label>Date of Birth</label>
-            <div class='input-group date'>
-                <input name="dob" type='text'  id='dob' class="form-control" autocomplete="off"/>
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputCity">City</label>
+                <input type="text" class="form-control" id="address_city">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="inputState">State</label>
+                <select id="address_state" class="form-control">
+                    <option selected>Choose...</option>
+                    <option value="CA">California</option>
+                    <option value="AL">Alabama</option>
+                    <option value="AK">Alaska</option>
+                    <option value="AZ">Arizona</option>
+                    <option value="AR">Arkansas</option>
+                    <option value="CO">Colorado</option>
+                    <option value="CT">Connecticut</option>
+                    <option value="DE">Delaware</option>
+                    <option value="DC">District Of Columbia</option>
+                    <option value="FL">Florida</option>
+                    <option value="GA">Georgia</option>
+                    <option value="HI">Hawaii</option>
+                    <option value="ID">Idaho</option>
+                    <option value="IL">Illinois</option>
+                    <option value="IN">Indiana</option>
+                    <option value="IA">Iowa</option>
+                    <option value="KS">Kansas</option>
+                    <option value="KY">Kentucky</option>
+                    <option value="LA">Louisiana</option>
+                    <option value="ME">Maine</option>
+                    <option value="MD">Maryland</option>
+                    <option value="MA">Massachusetts</option>
+                    <option value="MI">Michigan</option>
+                    <option value="MN">Minnesota</option>
+                    <option value="MS">Mississippi</option>
+                    <option value="MO">Missouri</option>
+                    <option value="MT">Montana</option>
+                    <option value="NE">Nebraska</option>
+                    <option value="NV">Nevada</option>
+                    <option value="NH">New Hampshire</option>
+                    <option value="NJ">New Jersey</option>
+                    <option value="NM">New Mexico</option>
+                    <option value="NY">New York</option>
+                    <option value="NC">North Carolina</option>
+                    <option value="ND">North Dakota</option>
+                    <option value="OH">Ohio</option>
+                    <option value="OK">Oklahoma</option>
+                    <option value="OR">Oregon</option>
+                    <option value="PA">Pennsylvania</option>
+                    <option value="RI">Rhode Island</option>
+                    <option value="SC">South Carolina</option>
+                    <option value="SD">South Dakota</option>
+                    <option value="TN">Tennessee</option>
+                    <option value="TX">Texas</option>
+                    <option value="UT">Utah</option>
+                    <option value="VT">Vermont</option>
+                    <option value="VA">Virginia</option>
+                    <option value="WA">Washington</option>
+                    <option value="WV">West Virginia</option>
+                    <option value="WI">Wisconsin</option>
+                    <option value="WY">Wyoming</option>
+                </select>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="inputZip">Zip</label>
+                <input type="text" class="form-control" id="address_zip">
             </div>
         </div>
-    </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label for="sex_r"> Gender of Recipient</label>
+            </div>
+            <div class="form-group col-md-3">
+                <label><input name="sex_r" id="sex_r" type="radio" value="0"> Female</label><br>
+                <label><input name="sex_r" id="sex_r" type="radio" value="1"> Male</label>
+            </div>
+            <div class="form-group col-md-4">
+            <label><Dat></Dat>e of Birth</label>
+                <div class='input-group date'>
+                    <input name="dob" type='text'  id='dob' class="form-control" autocomplete="off"/>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
         <hr>
         <div class="form-row">
-        <div class="form-group col-md-6">
-        Did the patient receive a combined heart-kidney transplant?
+            <div class="form-group col-md-6"><p>Did the patient receive a combined heart-kidney transplant?</p>
         </div>
         <div class="form-group col-md-6">
             <label><input name="dem_kidney_tx" id="dem_kidney_tx" type="radio" value="1"> Yes</label><br>
@@ -299,7 +293,6 @@ $module->emDebug("FILE IS ".$input_array);
     </div>
 
         <button type="submit" id="new_entry" class="btn btn-primary" value="true">Submit</button>
-
 
     </form>
 

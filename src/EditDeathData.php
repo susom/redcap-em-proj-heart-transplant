@@ -9,25 +9,24 @@ $module->emDebug("Starting Heart Transplant : Edit Death Data by ". $user . " : 
 
 $api_url = $module->getUrl("src/EditDeathData.php", true, true);
 $no_api_url = $module->getUrl("src/EditDeathData.php", true, false);
-$module->emDebug($api_url, $no_api_url);
+//$module->emDebug($api_url, $no_api_url);
 
 if(isset($_POST['edit_entry'])) {
-    $module->emDebug($_REQUEST);
+    //$module->emDebug($_REQUEST);
 
     $status = $module->editDeathData($_POST['codedValues'],$_POST['textValues'],$_POST['dateValues']);
 
-    if ($status === true) {
+    if ($status['status'] === true) {
         $result = array(
             'result' => 'success',
-            'msg'    => "The form was successfully saved.");
+            'msg'    => $status['msg']);
 
 
     } else {
         //there was an error, just return string in error
         $result = array(
             'result' => 'warn',
-            'status' => 'Did not complete',
-            'msg' => $status
+            'msg' => $status['msg']
         );
     }
 
@@ -36,30 +35,6 @@ if(isset($_POST['edit_entry'])) {
     exit();
 
 }
-
-
-//$module->emDebug($header, "HEADER");
-//$module->emDebug($candidate, "CANDIDATE"); exit;
-
-
-//list($header, $candidate) = $module->loadCandidateFile($file);
-//$module->emDebug("EXAMPLE ROWS TO LOAD", $header, $candidate[0], $candidate[1]);
-
-//do a getData from the database and get the
-//$module->emDebug("EXISTING",  $existing[0], $existing[1]);
-//$module->emDebug($existing);
-
-// TRY 1: compare MRN and Names : FAIL
-//$matches = $module->compareNamesMRN($candidate, $existing);
-
-// TRY 2: compare UNOS ID, then MRN, then last name : FAIL (some MRNs are different. i.e. Kaiser MRN
-//$matches = $module->compareNamesMRN($candidate, $existing);
-
-// TRY 3: search on UNOS ID, string compare last name and present comparison percentage for visual verification
-//list($header, $matched, $unmatched_header,  $unmatched) = $module->compareUnosOnly($candidate, $existing);
-
-// TRY 4; search on config selected fields
-//$module->emDebug($matches);
 
 ?>
 
@@ -84,15 +59,30 @@ if(isset($_POST['edit_entry'])) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js'></script>
-    <link href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css' rel='stylesheet' media='screen'></link>";
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css' rel='stylesheet' media='screen'></link>
 
     <script
             src="https://code.jquery.com/jquery-3.4.1.min.js"
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
             crossorigin="anonymous"></script>
 
+
+    <!--
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
+    -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+
+
+    <!-- Include Bootstrap Datepicker -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
+
+
 
 
 
@@ -108,7 +98,7 @@ if(isset($_POST['edit_entry'])) {
 <div class="container">
     <h2>New Transplant Entry</h2>
 
-    <form method="POST" id="new_entry_form" action="">
+    <form method="POST" id="edit_entry_form" action="">
 
         <div class="form-row">
             <div class="form-group col-md-12">
@@ -118,24 +108,24 @@ if(isset($_POST['edit_entry'])) {
             </div>
         </div>
         <div class="form-row">
-        <div class="form-group col-md-6">
-            <label for="mrn">Stanford Medical Record Number </label>
-            <input type="text" class="form-control" id="mrn_fix" placeholder="Do not include hyphens or spaces">
-        </div>
-                <div class="form-group col-md-4">
-            <label>Date of Transplant</label>
-            <div class='input-group date' id='dot'>
-                <input name="dot" id='dot' type='text' class="form-control" autocomplete="off"/>
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
+            <div class="form-group col-md-6">
+                <label for="mrn">Stanford Medical Record Number </label>
+                <input type="text" class="form-control" id="mrn_fix" placeholder="Do not include hyphens or spaces">
+            </div>
+            <div class="form-group col-md-4">
+                <label>Date of Transplant</label>
+                <div class='input-group date' id='dot'>
+                    <input name="dot" id="dot" type="text" class="form-control" autocomplete="off"/>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
             </div>
         </div>
 
-        </div>
-
+        <hr>
         <div class="form-row">
-             <div class="form-group col-md-6">
+            <div class="form-group col-md-6">
         <label for="out_mode_death">Cause of Death</label>
         <select id="out_mode_death" class="form-control">
             <option></option>
@@ -156,7 +146,7 @@ if(isset($_POST['edit_entry'])) {
             <div class="form-group col-md-4">
                 <label>Date of Death</label>
                 <div class='input-group date'>
-                    <input name="dem_date_of_death" type='text'  id='dob' class="form-control" autocomplete="off"/>
+                    <input name="dem_date_of_death" type='text'  id='dem_date_of_death' class="form-control" autocomplete="off"/>
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -165,7 +155,6 @@ if(isset($_POST['edit_entry'])) {
         </div>
 
         <button type="submit" id="edit_entry" class="btn btn-primary" value="true">Submit</button>
-
 
     </form>
 
@@ -180,11 +169,12 @@ if(isset($_POST['edit_entry'])) {
         // turn off cached entries
         $("form :input").attr("autocomplete", "off");
 
-        $('#dob').datepicker({
-            format: 'yyyy-mm-dd'
 
-        });
         $('#dot').datepicker({
+            format: 'yyyy-mm-dd'
+        });
+
+        $('#dem_date_of_death').datepicker({
             format: 'yyyy-mm-dd'
         });
 
@@ -227,10 +217,9 @@ if(isset($_POST['edit_entry'])) {
                 method: "POST"
             })
                 .done(function (data) {
-                    console.log("DONE EDIT_DEATH_DATA");
 
-                    if (data.status === 'success') {
-                        alert('The data was successfully updated.');
+                    if (data.result === 'success') {
+                        alert(data.msg);
                         location.reload();
                     } else {
                         alert(data.msg);
