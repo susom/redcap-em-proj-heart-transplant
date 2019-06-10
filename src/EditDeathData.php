@@ -40,7 +40,7 @@ if(isset($_POST['edit_entry'])) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>New Tx Entry</title>
+    <title>Recipient Death Data</title>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
 
 
@@ -95,17 +95,11 @@ if(isset($_POST['edit_entry'])) {
 <body>
 
 <div class="container">
-    <h2>New Transplant Entry</h2>
+    <h2>RECIPIENT DEATH DATA</h2>
 
     <form method="POST" id="edit_entry_form" action="">
 
-        <div class="form-row">
-            <div class="form-group col-md-12">
-          <hr>
-          <h3>RECIPIENT DATA</h3>
-          <hr>
-            </div>
-        </div>
+        <hr>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="mrn">Stanford Medical Record Number </label>
@@ -129,17 +123,17 @@ if(isset($_POST['edit_entry'])) {
         <select id="out_mode_death" class="form-control">
             <option></option>
             <option value='1'>Cellular Rejection</option>
-<option value='2'>AMR</option>
-<option value='3'>PGD</option>
-<option value='4'>Infection</option>
-<option value='5'>Non- Cardiac/Transplant Related</option>
-<option value='6'>CAV</option>
-<option value='7'>Unknown sudden cardiac death</option>
-<option value='8'>Complications of malignancy</option>
-<option value='9'>Surgical Complications</option>
-<option value='10'>Pulmonary Disease/Respiratory Failure</option>
-<option value='11'>Pulmonary Embolus</option>
-<option value='99'>Other</option>
+            <option value='2'>AMR</option>
+            <option value='3'>PGD</option>
+            <option value='4'>Infection</option>
+            <option value='5'>Non-Cardiac/Transplant Related</option>
+            <option value='6'>CAV</option>
+            <option value='7'>Unknown sudden cardiac death</option>
+            <option value='8'>Complications of malignancy</option>
+            <option value='9'>Surgical Complications</option>
+            <option value='10'>Pulmonary Disease/Respiratory Failure</option>
+            <option value='11'>Pulmonary Embolus</option>
+            <option value='99'>Other</option>
         </select>
              </div>
             <div class="form-group col-md-4">
