@@ -68,7 +68,7 @@ if(isset($_POST['new_entry'])) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>New Tx Entry</title>
+    <title>Adult Heart Transplant Intake Form</title>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
 
 
@@ -145,15 +145,7 @@ if(isset($_POST['new_entry'])) {
                 <input type="text" class="form-control" id="last_name" placeholder="Last name">
             </div>
         </div>
-        <div class="form-group">
-            <label for="inputAddress">Address</label>
-            <input type="text" class="form-control" id="address_street" placeholder="1234 Main St">
-        </div>
         <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="inputCity">City</label>
-                <input type="text" class="form-control" id="address_city">
-            </div>
             <div class="form-group col-md-4">
                 <label for="inputState">State</label>
                 <select id="address_state" class="form-control">
@@ -237,22 +229,40 @@ if(isset($_POST['new_entry'])) {
         </div>
         <hr>
         <div class="form-row">
-            <div class="form-group col-md-6"><p>Did the patient receive a combined heart-kidney transplant?</p>
+            <div class="form-group col-md-4"><p>Did the patient receive a kidney transplant?</p>
+            </div>
+            <div class="form-group col-md-2">
+                <label><input name="dem_kidney_tx" id="dem_kidney_tx" type="radio" value="1"> Yes</label><br>
+                <label><input name="dem_kidney_tx" id="dem_kidney_tx" type="radio" value="0"> No</label>
+            </div>
+            <div class="form-group col-md-4">
+                <label>Date of Kidney Transplant</label>
+                <div class='input-group date'>
+                    <input name="dem_kidney_tx_date" type='text'  id='dem_kidney_tx_date' class="form-control" autocomplete="off"/>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
         </div>
-        <div class="form-group col-md-6">
-            <label><input name="dem_kidney_tx" id="dem_kidney_tx" type="radio" value="1"> Yes</label><br>
-            <label><input name="dem_kidney_tx" id="dem_kidney_tx" type="radio" value="0"> No</label>
-        </div>
-    </div>
         <div class="form-row">
-        <div class="form-group col-md-6">
-        Did the patient receive a combined heart-liver transplant?
+            <div class="form-group col-md-4">
+                Did the patient receive a liver transplant?
+            </div>
+            <div class="form-group col-md-2">
+                <label><input name="dem_liver_tx" id="dem_liver_tx" type="radio" value="1"> Yes</label><br>
+                <label><input name="dem_liver_tx" id="dem_liver_tx" type="radio" value="0"> No</label>
+            </div>
+            <div class="form-group col-md-4">
+                <label>Date of Liver Transplant</label>
+                <div class='input-group date'>
+                    <input name="dem_liver_tx_date" type='text'  id='dem_liver_tx_date' class="form-control" autocomplete="off"/>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
         </div>
-        <div class="form-group col-md-6">
-            <label><input name="dem_liver_tx" id="dem_liver_tx" type="radio" value="1"> Yes</label><br>
-            <label><input name="dem_liver_tx" id="dem_liver_tx" type="radio" value="0"> No</label>
-        </div>
-    </div>
 
         <hr>
         <div class="form-group">
@@ -296,15 +306,19 @@ if(isset($_POST['new_entry'])) {
                 </select>
             </div>
             <div class="form-group col-md-6">
-                <label for="cause_death">Cause of Death</label>
-                <select id="cause_death" class="form-control">
+                <label for="dnr_cause_death">Cause of Death</label>
+                <select id="dnr_cause_death" class="form-control">
                     <option></option>
-                    <option value='0'>Stroke</option>
-                    <option value='1'>GSW</option>
-                    <option value='2'>Anoxia</option>
-                    <option value='3'>Head Trauma</option>
-                    <option value='4'>Drug Intoxication</option>
-                    <option value='99'>Other</option>
+                    <option value='1'>MVA</option>
+                    <option value='2'>GSW</option>
+                    <option value='3'>Child Abuse (shaking)</option>
+                    <option value='4'>Drowning</option>
+                    <option value='5'>Blunt Head Trauma (Other)</option>
+                    <option value='6'>Intracranial Hemmorhage</option>
+                    <option value='8'>Infection</option>
+                    <option value='10'>Ischemia (other, like seizure)</option>
+                    <option value='98'>Unknown</option>
+                    <option value='99'>Other (describe below)</option>
                 </select>
             </div>
 
@@ -327,9 +341,14 @@ if(isset($_POST['new_entry'])) {
 
         $('#dob').datepicker({
             format: 'yyyy-mm-dd'
-
         });
         $('#dot').datepicker({
+            format: 'yyyy-mm-dd'
+        });
+        $('#dem_kidney_tx_date').datepicker({
+            format: 'yyyy-mm-dd'
+        });
+        $('#dem_liver_tx_date').datepicker({
             format: 'yyyy-mm-dd'
         });
 
@@ -353,21 +372,21 @@ if(isset($_POST['new_entry'])) {
                "dem_kidney_tx"   : $("#dem_kidney_tx").val(),
                "dem_liver_tx"   : $("#dem_liver_tx").val(),
                "donor_high_risk" : $("#donor_high_risk").val(),
-               "cause_death"     : $("#cause_death").val()
+               "dnr_cause_death"     : $("#dnr_cause_death").val()
 
            };
 
            let dateValues = {
                "dot" : $("input#dot.form-control").val(),
-               "dob" : $("input#dob.form-control").val()
+               "dob" : $("input#dob.form-control").val(),
+               "dem_kidney_tx_date" : $("input#dem_kidney_tx_date.form-control").val(),
+               "dem_liver_tx_date" : $("input#dem_liver_tx_date.form-control").val()
            };
 
            let textValues = {
                "mrn_fix" : $("input#mrn_fix.form-control").val(),
                "first_name" : $("input#first_name.form-control").val(),
                "last_name" : $("input#last_name.form-control").val(),
-               "address_street" : $("input#address_street.form-control").val(),
-               "address_city" : $("input#address_city.form-control").val(),
                "address_state" : $("#address_state").val(),
                "address_zip" : $("input#address_zip.form-control").val(),
                "unos_id" : $("input#unos_id.form-control").val(),
