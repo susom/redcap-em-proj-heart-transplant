@@ -22,6 +22,8 @@ class HeartTransplant extends \ExternalModules\AbstractExternalModule {
 
     function editDeathData($coded, $text, $date) {
 
+        $this->emDebug($coded, $text, $date);
+
         //check that the MRN and DOT finds a match
         $codedArray = array();
         foreach ($coded as $field_name => $field_value) {
@@ -36,7 +38,9 @@ class HeartTransplant extends \ExternalModules\AbstractExternalModule {
         $dateArray = array();
         foreach ($date as $field_name => $field_value) {
 
-            if (isset($field_value)) {
+            //$this->emDebug($field_value, isset($field_value), empty($field_value)); exit;
+
+            if (!empty($field_value)) {
                 $date = new \DateTime($field_value);
                 $date_str = $date->format('Y-m-d');
 
@@ -44,7 +48,8 @@ class HeartTransplant extends \ExternalModules\AbstractExternalModule {
             }
         }
 
-        $this->emDebug($coded, $text, $date);
+        //$this->emDebug($save_id, $codedArray, $textArray, $dateArray); exit;
+
 
         $mrn_fix = $textArray['mrn_fix'];
         $dot = $dateArray['dot'];
@@ -124,6 +129,8 @@ class HeartTransplant extends \ExternalModules\AbstractExternalModule {
 
     function saveNewEntry($coded, $text, $date) {
 
+        //$this->emDebug($coded, $text, $date); exit;
+
         $new_id = $this->getNextHighestId();
         //$new_id = 2032;
 
@@ -140,13 +147,15 @@ class HeartTransplant extends \ExternalModules\AbstractExternalModule {
         $dateArray = array();
         foreach ($date as $field_name => $field_value) {
 
-            if (isset($field_value)) {
+            if (!empty($field_value)) {
                 $date = new \DateTime($field_value);
                 $date_str = $date->format('Y-m-d');
 
                 $dateArray[$field_name] = $date_str;
             }
         }
+
+        //$this->emDebug($save_id, $codedArray, $textArray, $dateArray); exit;
 
         //check that the mrn_fix and dot don't already exist
         $mrn_fix = $textArray['mrn_fix'];  //todo: check that it's only numbers

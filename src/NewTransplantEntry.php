@@ -149,7 +149,7 @@ if(isset($_POST['new_entry'])) {
             <div class="form-group col-md-4">
                 <label for="inputState">State</label>
                 <select id="address_state" class="form-control">
-                    <option selected>Choose...</option>
+                    <option selected></option>
                     <option value="CA">California</option>
                     <option value="AL">Alabama</option>
                     <option value="AK">Alaska</option>
@@ -366,11 +366,11 @@ if(isset($_POST['new_entry'])) {
             */
 
            let codedValues = {
-               "sex_r" : $("#sex_r").val(),
-               "sex_d" : $("#sex_d").val(),
-               "dem_referral_center" : $("#dem_referral_center").val(),
-               "dem_kidney_tx"   : $("#dem_kidney_tx").val(),
-               "dem_liver_tx"   : $("#dem_liver_tx").val(),
+               "sex_r" :  $("input[name='sex_r']:checked").val(),
+               "sex_d" :  $("input[name='sex_d']:checked").val(),
+               "dem_referral_center" :  $("input[name='dem_referral_center']:checked").val(),
+               "dem_kidney_tx"   :  $("input[name='dem_kidney_tx']:checked").val(),
+               "dem_liver_tx"   :  $("input[name='dem_liver_tx']:checked").val(),
                "donor_high_risk" : $("#donor_high_risk").val(),
                "dnr_cause_death"     : $("#dnr_cause_death").val()
 
