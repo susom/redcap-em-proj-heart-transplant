@@ -2,11 +2,11 @@
 
 ---
 
-##New Transplant Entry
+## New Transplant Entry
 ***
 
 
-##### The fields that are collected in this form are:
+### The fields that are collected in this form are:
 Field label | REDCap variable | Value type
 --- | --- | ---
 Stanford Medical Record Number | mrn_fix
@@ -27,11 +27,11 @@ Donor Age | age_d
 Gender of Donor | sex_d
 Meets CDC Guidelines for High Risk | donor_high_risk | See coding table below
 Cause of Death | dnr_cause_death | See coding table below
+---
 
+## Coded value mappings
 
-### Coded value mappings
-
-##### Cause of Death : dnr_cause_death
+### Cause of Death : dnr_cause_death
 Code | Label 
 --- | --- 
 1 |	MVA
@@ -46,8 +46,8 @@ Code | Label
 99|	Other (describe below)
 
 
-
-##### 	Meets CDC Guidelines for High Risk : donor_high_risk
+---
+### 	Meets CDC Guidelines for High Risk : donor_high_risk
 Code | Label 
 --- | --- 
 1 |	Yes
@@ -56,8 +56,8 @@ Code | Label
 
 ### Data Entry Checks
 
-
-##### There are some data entry checks in place. If it does not pass the expected behavior, it will not save and warn the user.
+---
+### There are some data entry checks in place. If it does not pass the expected behavior, it will not save and warn the user.
 Check | Expected behavior 
 --- | --- 
 MRN number | MRN must be all numeric
@@ -69,17 +69,18 @@ ___
 
 ##Edit Death Data
  ***
-##### The fields that are collected in this form are:
+### The fields that are collected in this form are:
 Field label | REDCap variable | Value type
 --- | --- | ---
 Stanford Medical Record Number | mrn_fix
 Date of Transplant | dot
 Cause of Death | out_mode_death | See coding table below
 Date of Death | dem_date_of_death
+---
 
-### Coded value mappings
+## Coded value mappings
 
-##### Cause of Death : out_mode_death
+### Cause of Death : out_mode_death
 Code | Label 
 --- | --- 
 1 |	Cellular Rejection
@@ -99,7 +100,7 @@ Code | Label
 ### Data Entry Checks
 
 
-##### There are some data entry checks in place. If it does not pass the expected behavior, it will not save and warn the user.
+### There are some data entry checks in place. If it does not pass the expected behavior, it will not save and warn the user.
 Check | Expected behavior 
 --- | --- 
 MRN + Transplant Date | MRN  and Transplant Date must exist already in the database
