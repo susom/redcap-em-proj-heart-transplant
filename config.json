@@ -28,6 +28,11 @@
         "url": "src/EditDeathData.php"
       },
       {
+        "name": "Enter annual update for an existing record",
+        "icon": "gear",
+        "url": "src/AnnualFormEntry.php"
+      },
+      {
         "name": "Patient Homepage",
         "icon": "gear",
         "url": "PatientHomepage.php"
@@ -36,7 +41,8 @@
   },
   "no-auth-pages": [
     "src/EditDeathData",
-    "src/NewTransplantEntry"
+    "src/NewTransplantEntry",
+    "src/AnnualFormEntry.php"
   ],
 
   "system-settings": [
