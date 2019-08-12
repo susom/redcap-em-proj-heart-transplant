@@ -14,7 +14,8 @@ $no_api_url = $module->getUrl("src/AnnualFormEntry.php", true, false);
 $module->emDebug($api_url, $no_api_url);
 
 if (isset($_POST['search_mrn'])) {
-    $status = $module->determineDateOfTransplant($_POST['stanford_mrn']);
+    $status = $module->determineDateOfTransplant($_POST['stanford_mrn'], $_POST['last_name']);
+
 
     if ($status['status'] === true) {
         if (empty($status['transplant_num'])) {
@@ -141,6 +142,10 @@ if (isset($_POST['annual_update'])) {
             <div class="form-group col-md-4">
                 <label for="stanford_mrn">Stanford Medical Record Number </label>
                 <input type="text" class="form-control" id="stanford_mrn" placeholder="Do not include hyphens or spaces">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="last_name">Last Name</label>
+                <input type="text" class="form-control" id="last_name" placeholder="Last name">
             </div>
 
         </div>
@@ -734,6 +739,7 @@ if (isset($_POST['annual_update'])) {
         $('#find_mrn').on('click', function () {
             let formValues = {
                 "stanford_mrn": $("input#stanford_mrn.form-control").val(),
+                "last_name" : $("input#last_name.form-control").val(),
                 "search_mrn"  : true
             };
 

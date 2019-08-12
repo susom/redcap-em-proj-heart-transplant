@@ -234,8 +234,8 @@ class HeartTransplant extends \ExternalModules\AbstractExternalModule {
 
     }
 
-    function determineDateOfTransplant($stanford_mrn) {
-        $this->emDebug("STANFORD MRN:". $stanford_mrn);
+    function determineDateOfTransplant($stanford_mrn, $last_name) {
+        $this->emDebug("STANFORD MRN:". $stanford_mrn . " LASTNAME: ". $last_name);
 
         if (empty($stanford_mrn)) {
 
@@ -246,13 +246,23 @@ class HeartTransplant extends \ExternalModules\AbstractExternalModule {
             return $status;
         }
 
+        if (empty($last_name)) {
+
+            $status = array(
+                'status' => false,
+                'msg'    => "Please check your entry! The last name was not entered."
+            );
+            return $status;
+        }
+
+        //ideally would like to include last name in the filter, but since can't ignore cap in redcap filter, search after
         $filter = "[stanford_mrn] = '{$stanford_mrn}'";
 
         $params = array(
             'return_format'    => 'json',
             //'records'          => $record,
             //'events'           => $filter_event,
-            'fields'           => array(REDCap::getRecordIdField(), 'stanford_mrn', 'dot'),
+            'fields'           => array(REDCap::getRecordIdField(), 'stanford_mrn', 'dot', 'last_name'),
             'filterLogic'      => $filter
         );
 
@@ -270,14 +280,24 @@ class HeartTransplant extends \ExternalModules\AbstractExternalModule {
             return $status;
         }
 
+        //check that all the options have last name that match
+        foreach ($records as $key => $record) {
+
+            $rec_lname = $record['last_name'];
+            if (strtoupper(trim($rec_lname)) === strtoupper(trim($last_name))) {
+                $cands[] = $record;
+            }
+        }
+        //$this->emDebug(reset($records), $cands);
+
         $msg = null;
 
         //todo: check that there was only one MRN found. if multiple found, pick the most recent date of transplant
-        $count = sizeof($records);
+        $count = sizeof($cands);
 
         if ($count > 1) {
 
-            list($save_id, $dot) = $this->findTransplantNumberMaxDate($records);
+            list($save_id, $dot) = $this->findTransplantNumberMaxDate($cands);
 
             $dot_year = substr($dot, 0,4);
 
@@ -299,8 +319,8 @@ class HeartTransplant extends \ExternalModules\AbstractExternalModule {
 
         } else {
             //get the record_id from the retrieved record
-            $save_id = (current($records))[REDCap::getRecordIdField()];
-            $dot = (current($records))['dot'];
+            $save_id = (current($cands))[REDCap::getRecordIdField()];
+            $dot = (current($cands))['dot'];
 
             $dot_year = substr($dot, 0,4);
 
@@ -335,10 +355,10 @@ class HeartTransplant extends \ExternalModules\AbstractExternalModule {
 
         $records = json_decode($q, true);
 
-        $status['r_followup_dialysis']  = $records[0]['r_followup_dialysis'];
-        $status['r_post_dialysis_date'] = $records[0]['r_post_dialysis_date'];
-        $status['post_icd']             = $records[0]['post_icd'];
-        $status['post_icd_date']        = $records[0]['post_icd_date'];
+        $status['r_followup_dialysis']  = $cands[0]['r_followup_dialysis'];
+        $status['r_post_dialysis_date'] = $cands[0]['r_post_dialysis_date'];
+        $status['post_icd']             = $cands[0]['post_icd'];
+        $status['post_icd_date']        = $cands[0]['post_icd_date'];
 
         return $status;
 
@@ -654,8 +674,8 @@ class HeartTransplant extends \ExternalModules\AbstractExternalModule {
             } else {
                 //$reject_date =  new DateTime($transplant['dot']);
                 $reject_date = $transplant['dot'];
-                $transplant_number = $transplant[REDCap::getRecordIdField()];
-                $this->emDebug("Rejected date is $reject_date with t_num: ".$transplant_number);
+                //$transplant_number = $transplant[REDCap::getRecordIdField()];
+                $this->emDebug("Rejected date is $reject_date. Date is still the previous : ".$transplant_number);
             }
         }
 
