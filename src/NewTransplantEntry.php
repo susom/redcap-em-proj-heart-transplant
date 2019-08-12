@@ -323,6 +323,14 @@ if(isset($_POST['new_entry'])) {
             </div>
 
         </div>
+        <div class="form-row">
+            <div class="form-group col-md-6"><p>Was donor supported by transmedics organ care system (OCS)?</p>
+            </div>
+            <div class="form-group col-md-2">
+                <label><input name="dnr_ocs_yn" id="dnr_ocs_yn" type="radio" value="1"> Yes</label><br>
+                <label><input name="dnr_ocs_yn" id="dnr_ocs_yn" type="radio" value="0"> No</label>
+            </div>
+        </div>
 
         <button type="submit" id="new_entry" class="btn btn-primary" value="true">Submit</button>
 
@@ -372,8 +380,8 @@ if(isset($_POST['new_entry'])) {
                "dem_kidney_tx"   :  $("input[name='dem_kidney_tx']:checked").val(),
                "dem_liver_tx"   :  $("input[name='dem_liver_tx']:checked").val(),
                "donor_high_risk" : $("#donor_high_risk").val(),
-               "dnr_cause_death"     : $("#dnr_cause_death").val()
-
+               "dnr_cause_death"     : $("#dnr_cause_death").val(),
+               "dnr_ocs_yn"   :  $("input[name='dnr_ocs_yn']:checked").val()
            };
 
            let dateValues = {
