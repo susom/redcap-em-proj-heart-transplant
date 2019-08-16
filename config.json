@@ -42,7 +42,7 @@
   "no-auth-pages": [
     "src/EditDeathData",
     "src/NewTransplantEntry",
-    "src/AnnualFormEntry.php"
+    "src/AnnualFormEntry"
   ],
 
   "system-settings": [
