@@ -364,29 +364,39 @@ if (isset($_POST['annual_update'])) {
                 <input type="text" class="form-control" id="rt_cth_mit" placeholder="">
             </div>
         </div>
-        <div class="form-row" id="dse" style="display:none">
-            <div class="form-group col-md-4">
-                <label>Date of DSE</label>
-                <div class='input-group date'>
-                    <input name="rt_ech_date" id='rt_ech_date' type='text' class="form-control"
-                           autocomplete="off"/>
-                    <span class="input-group-addon">
+        <div id="dse" style="display:none">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Date of DSE</label>
+                    <div class='input-group date'>
+                        <input name="rt_ech_date" id='rt_ech_date' type='text' class="form-control"
+                               autocomplete="off"/>
+                        <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
+                    </div>
                 </div>
+                <div class="form-group col-md-2"><p>Type of Echo</p></div>
+                <div class="form-group col-md-4">
+                    <label><input name="rt_ech_type" id="rt_ech_type" type="radio" value="1"> TTE</label><br>
+                    <label><input name="rt_ech_type" id="rt_ech_type" type="radio" value="2"> TEE</label><br>
+                    <label><input name="rt_ech_type" id="rt_ech_type" type="radio" value="3"> DSE</label>
+                </div>
+
             </div>
 
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="rt_ech_lvef">LVEF on DSE</label>
+                    <input type="text" class="form-control" id="rt_ech_lvef" placeholder="">
+                </div>
 
+                <div class="form-group col-md-2"><p>Results of DSE</p></div>
+                <div class="form-group col-md-3">
+                    <label><input name="rt_ech_dse" id="rt_ech_dse" type="radio" value="0"> Normal - no ischemia</label><br>
+                    <label><input name="rt_ech_dse" id="rt_ech_dse" type="radio" value="1"> Abnormal - ischemia present</label>
+                </div>
 
-            <div class="form-group col-md-1"><p>Results of DSE</p></div>
-            <div class="form-group col-md-3">
-                <label><input name="rt_ech_dse" id="rt_ech_dse" type="radio" value="0"> Normal - no ischemia</label><br>
-                <label><input name="rt_ech_dse" id="rt_ech_dse" type="radio" value="1"> Abnormal - ischemia present</label>
-            </div>
-
-            <div class="form-group col-md-4">
-                <label for="rt_ech_lvef">LVEF on DSE</label>
-                <input type="text" class="form-control" id="rt_ech_lvef" placeholder="">
             </div>
         </div>
 
@@ -800,6 +810,7 @@ if (isset($_POST['annual_update'])) {
                 //"sot_type": $("input[name='sot_type']:checked").val(),  //no such field
                 "mal_melanoma": $("input[name='mal_melanoma']:checked").val(),
  //               "dse_angio": $("#dse_angio").val(),
+                "rt_ech_type": $("input[name='rt_ech_type']:checked").val(),
                 "rt_ech_dse": $("input[name='rt_ech_dse']:checked").val()
             };
 

@@ -420,12 +420,14 @@ class HeartTransplant extends \ExternalModules\AbstractExternalModule {
 
         $msg  = array_merge($msg, $msg_cath);
 
-        //2. Save Echo instrument
+        //2. Save Echo instrument separately as it is repeating.
         $echo_data_array = array();
         $echo_data_array['rt_ech_date'] = $date['rt_ech_date'];
         unset($date['rt_ech_date']);
         $echo_data_array['rt_ech_dse'] = $coded['rt_ech_dse'];
         unset($coded['rt_ech_dse']);
+        $echo_data_array['rt_ech_type'] = $coded['rt_ech_type'];
+        unset($coded['rt_ech_type']);
         $echo_data_array['rt_ech_lvef'] = $text['rt_ech_lvef'];
         unset($text['rt_ech_lvef']);
 

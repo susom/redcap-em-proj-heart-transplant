@@ -2,7 +2,7 @@
 
 ---
 
-## New Transplant Entry
+##<span style="color:red">New Transplant Entry</span>
 ***
 
 
@@ -54,7 +54,7 @@ Code | Label
 0 |	No
 98 |Unknown
 
-### Data Entry Checks
+###Data Entry Checks
 
 ---
 ### There are some data entry checks in place. If it does not pass the expected behavior, it will not save and warn the user.
@@ -67,7 +67,7 @@ MRN + Transplant Date | MRN  and Transplant Date must be unique in the database.
 ___
 
 
-##Edit Death Data
+##<span style="color:red">Edit Death Data</span>
  ***
 ### The fields that are collected in this form are:
 Field label | REDCap variable | Value type
@@ -105,4 +105,46 @@ Check | Expected behavior
 --- | --- 
 MRN + Transplant Date | MRN  and Transplant Date must exist already in the database
 1 match | If more than one match is found, it will edit the first match and user notified of the multiple matches
+
+---
+___
+
+
+##<span style="color:red">Annual Update</span>
+ ***
+### The fields that are collected in this form are:
+Field label | REDCap variable | Value type
+--- | --- | ---
+Stanford Medical Record Number | stanford_mrn
+Date of Followup | last_folloupw_date
+Annual Year | not saved| Used to determine which update
+Was the patient started on dialysis THIS PAST YEAR | R_followup_dialysis
+---
+
+## Coded value mappings
+
+###  immuno_##_mo : immuno_##_mo
+Code | Label 
+--- | --- 
+1  |tacrolimus (IR)
+2	 |	envarsus
+3	 |	astagraf
+4	 |	cellcept
+5	 |	myfortic
+6	 |	Pred >= 5 mg/day
+7	 |	Pred < 5 mg/day
+8	 |	Siro
+9	 |	Evero
+10	 |	AZA
+12	 |	CSA
+
+
+### Data Entry Checks
+
+
+### There are some data entry checks in place. If it does not pass the expected behavior, it will not save and warn the user.
+Check | Expected behavior 
+--- | --- 
+MRN + Last Name | MRN  and Last Name must exist already in the database
+1 match | If more than one match is found, it will edit the most recent dot and user notified of the year of transplant
 
