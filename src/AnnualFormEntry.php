@@ -408,8 +408,8 @@ if (isset($_POST['annual_update'])) {
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_3_mo___3">Astagraf</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_3_mo___4">Cellcept</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_3_mo___5">Myfortic</label></div>
-                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_3_mo___6">Pred >= 5 mg/day</label></div>
-                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_3_mo___7">Pred < 5 mg/day</label></div>
+                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_3_mo___6">Pred > 5 mg/day</label></div>
+                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_3_mo___7">Pred <= 5 mg/day</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_3_mo___8">Siro</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_3_mo___9">Evero</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_3_mo___10">AZA</label></div>
@@ -425,12 +425,11 @@ if (isset($_POST['annual_update'])) {
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_6_mo___3">astagraf</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_6_mo___4">cellcept</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_6_mo___5">myfortic</label></div>
-                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_6_mo___6">Pred >= 5 mg/day</label></div>
-                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_6_mo___7">Pred < 5 mg/day</label></div>
+                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_6_mo___6">Pred > 5 mg/day</label></div>
+                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_6_mo___7">Pred <= 5 mg/day</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_6_mo___8">Siro</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_6_mo___9">Evero</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_6_mo___10">AZA</label></div>
-                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_6_mo___11">censor</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_6_mo___12">CSA</label></div>
             </div>
         </div>
@@ -443,12 +442,11 @@ if (isset($_POST['annual_update'])) {
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_12_mo___3">astagraf</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_12_mo___4">cellcept</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_12_mo___5">myfortic</label></div>
-                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_12_mo___6">Pred >= 5 mg/day</label></div>
-                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_12_mo___7">Pred < 5 mg/day</label></div>
+                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_12_mo___6">Pred > 5 mg/day</label></div>
+                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_12_mo___7">Pred <= 5 mg/day</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_12_mo___8">Siro</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_12_mo___9">Evero</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_12_mo___10">AZA</label></div>
-                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_12_mo___11">censor</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_12_mo___12">CSA</label></div>
             </div>
         </div>
@@ -461,12 +459,11 @@ if (isset($_POST['annual_update'])) {
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_24_mo___3">astagraf</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_24_mo___4">cellcept</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_24_mo___5">myfortic</label></div>
-                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_24_mo___6">Pred >= 5 mg/day</label></div>
-                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_24_mo___7">Pred < 5 mg/day</label></div>
+                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_24_mo___6">Pred > 5 mg/day</label></div>
+                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_24_mo___7">Pred <= 5 mg/day</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_24_mo___8">Siro</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_24_mo___9">Evero</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_24_mo___10">AZA</label></div>
-                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_24_mo___11">censor</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_24_mo___12">CSA</label></div>
             </div>
         </div>
@@ -479,12 +476,11 @@ if (isset($_POST['annual_update'])) {
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_36_mo___3">astagraf</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_36_mo___4">cellcept</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_36_mo___5">myfortic</label></div>
-                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_36_mo___6">Pred >= 5 mg/day</label></div>
-                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_36_mo___7">Pred < 5 mg/day</label></div>
+                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_36_mo___6">Pred > 5 mg/day</label></div>
+                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_36_mo___7">Pred <= 5 mg/day</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_36_mo___8">Siro</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_36_mo___9">Evero</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_36_mo___10">AZA</label></div>
-                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_36_mo___11">censor</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_36_mo___12">CSA</label></div>
             </div>
         </div>
@@ -497,12 +493,11 @@ if (isset($_POST['annual_update'])) {
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_48_mo___3">astagraf</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_48_mo___4">cellcept</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_48_mo___5">myfortic</label></div>
-                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_48_mo___6">Pred >= 5 mg/day</label></div>
-                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_48_mo___7">Pred < 5 mg/day</label></div>
+                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_48_mo___6">Pred > 5 mg/day</label></div>
+                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_48_mo___7">Pred <= 5 mg/day</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_48_mo___8">Siro</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_48_mo___9">Evero</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_48_mo___10">AZA</label></div>
-                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_48_mo___11">censor</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_48_mo___12">CSA</label></div>
             </div>
         </div>
@@ -515,12 +510,11 @@ if (isset($_POST['annual_update'])) {
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_60_mo___3">astagraf</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_60_mo___4">cellcept</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_60_mo___5">myfortic</label></div>
-                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_60_mo___6">Pred >= 5 mg/day</label></div>
-                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_60_mo___7">Pred < 5 mg/day</label></div>
+                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_60_mo___6">Pred > 5 mg/day</label></div>
+                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_60_mo___7">Pred <= 5 mg/day</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_60_mo___8">Siro</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_60_mo___9">Evero</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_60_mo___10">AZA</label></div>
-                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_60_mo___11">censor</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_60_mo___12">CSA</label></div>
             </div>
         </div>
@@ -533,12 +527,11 @@ if (isset($_POST['annual_update'])) {
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_72_mo___3">astagraf</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_72_mo___4">cellcept</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_72_mo___5">myfortic</label></div>
-                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_72_mo___6">Pred >= 5 mg/day</label></div>
-                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_72_mo___7">Pred < 5 mg/day</label></div>
+                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_72_mo___6">Pred > 5 mg/day</label></div>
+                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_72_mo___7">Pred <= 5 mg/day</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_72_mo___8">Siro</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_72_mo___9">Evero</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_72_mo___10">AZA</label></div>
-                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_72_mo___11">censor</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_72_mo___12">CSA</label></div>
             </div>
         </div>
@@ -551,12 +544,11 @@ if (isset($_POST['annual_update'])) {
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_84_mo___3">astagraf</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_84_mo___4">cellcept</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_84_mo___5">myfortic</label></div>
-                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_84_mo___6">Pred >= 5 mg/day</label></div>
-                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_84_mo___7">Pred < 5 mg/day</label></div>
+                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_84_mo___6">Pred > 5 mg/day</label></div>
+                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_84_mo___7">Pred <= 5 mg/day</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_84_mo___8">Siro</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_84_mo___9">Evero</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_84_mo___10">AZA</label></div>
-                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_84_mo___11">censor</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_84_mo___12">CSA</label></div>
             </div>
         </div>
@@ -569,12 +561,11 @@ if (isset($_POST['annual_update'])) {
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_96_mo___3">astagraf</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_96_mo___4">cellcept</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_96_mo___5">myfortic</label></div>
-                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_96_mo___6">Pred >= 5 mg/day</label></div>
-                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_96_mo___7">Pred < 5 mg/day</label></div>
+                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_96_mo___6">Pred > 5 mg/day</label></div>
+                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_96_mo___7">Pred <= 5 mg/day</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_96_mo___8">Siro</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_96_mo___9">Evero</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_96_mo___10">AZA</label></div>
-                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_96_mo___11">censor</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_96_mo___12">CSA</label></div>
             </div>
         </div>
@@ -587,12 +578,11 @@ if (isset($_POST['annual_update'])) {
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_108_mo___3">astagraf</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_108_mo___4">cellcept</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_108_mo___5">myfortic</label></div>
-                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_108_mo___6">Pred >= 5 mg/day</label></div>
-                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_108_mo___7">Pred < 5 mg/day</label></div>
+                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_108_mo___6">Pred > 5 mg/day</label></div>
+                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_108_mo___7">Pred <= 5 mg/day</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_108_mo___8">Siro</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_108_mo___9">Evero</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_108_mo___10">AZA</label></div>
-                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_108_mo___11">censor</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_108_mo___12">CSA</label></div>
             </div>
         </div>
@@ -605,12 +595,11 @@ if (isset($_POST['annual_update'])) {
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_120_mo___3">astagraf</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_120_mo___4">cellcept</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_120_mo___5">myfortic</label></div>
-                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_120_mo___6">Pred >= 5 mg/day</label></div>
-                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_120_mo___7">Pred < 5 mg/day</label></div>
+                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_120_mo___6">Pred > 5 mg/day</label></div>
+                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_120_mo___7">Pred <= 5 mg/day</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_120_mo___8">Siro</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_120_mo___9">Evero</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_120_mo___10">AZA</label></div>
-                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_120_mo___11">censor</label></div>
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_120_mo___12">CSA</label></div>
             </div>
         </div>

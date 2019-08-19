@@ -119,20 +119,41 @@ Stanford Medical Record Number | stanford_mrn
 Date of Followup | last_folloupw_date
 Annual Year | not saved| Used to determine which update
 Was the patient started on dialysis THIS PAST YEAR | R_followup_dialysis
+Date of Dialysis Initiation | r_post_dialysis_date
+Did the patient undergo ICD implantation THIS PAST YEAR? |post_icd
+Date of ICD implantation | post_icd_date
+Did the patient undergo PPM implantation THIS PAST YEAR? | post_ppm
+Date of PPM implantation | post_ppm_date
+Has the patient had a PTLD diagnosis THIS PAST YEAR? | mal_ptld_yn
+Date of PTLD | mal_date_ptld
+Date of Malignancy | mal_date_sot
+Type of Malignancy | post_mal_type
+Has the patient had a solid organ tumor diagnosis THIS PAST YEAR | sot_type
+Has the patient had a MELANOMA diagnosis THIS PAST YEAR | mal_melanoma
+Date of melanoma diagnosis | mal_mel_date
+Will the patient undergo DSE or Angiogram as part of ischemia testing | 
+Date of Angiogram | rt_cth_date_angiogram
+Any vessel stenosis present | Rt_cth_vessel_angiogram
+MIT if known | rt_cth_mit
+Date of DSE | rt_ech_date
+Results of DSE | rt_ech_dse
+LVEF on DSE | rt_ech_lvef
+What immunosuppressants is patient taking? | Immuno_XX_mo
+Type of Echo | rt_ech_type
 ---
 
 ## Coded value mappings
 
-###  immuno_##_mo : immuno_##_mo
+###  immuno_XX_mo : immuno_XX_mo
 Code | Label 
 --- | --- 
-1  |tacrolimus (IR)
+1    | tacrolimus (IR)
 2	 |	envarsus
 3	 |	astagraf
 4	 |	cellcept
 5	 |	myfortic
-6	 |	Pred >= 5 mg/day
-7	 |	Pred < 5 mg/day
+6	 |	Pred > 5 mg/day
+7	 |	Pred <= 5 mg/day
 8	 |	Siro
 9	 |	Evero
 10	 |	AZA
@@ -145,6 +166,6 @@ Code | Label
 ### There are some data entry checks in place. If it does not pass the expected behavior, it will not save and warn the user.
 Check | Expected behavior 
 --- | --- 
-MRN + Last Name | MRN  and Last Name must exist already in the database
-1 match | If more than one match is found, it will edit the most recent dot and user notified of the year of transplant
+MRN + Last Name | MRN  and Last Name must exist already in the database. The most recent dot will be selected and user notified of the year of transplant
+
 
