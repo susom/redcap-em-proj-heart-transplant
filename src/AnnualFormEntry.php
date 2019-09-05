@@ -182,6 +182,7 @@ if (isset($_POST['annual_update'])) {
                     <option value='96'>8 years</option>
                     <option value='108'>9 years</option>
                     <option value='120'>10 years</option>
+                    <option value='morethan120'>More than 10 years</option>
                 </select>
             </div>
             <div class="form-group col-md-4">
@@ -336,6 +337,7 @@ if (isset($_POST['annual_update'])) {
                     <option></option>
                     <option value='angio'>Coronary Angiogram</option>
                     <option value='dse'>Dobutamine Stress Echo</option>
+                    <option value='none'>No Testing</option>
                 </select>
             </div>
         </div>
@@ -392,9 +394,10 @@ if (isset($_POST['annual_update'])) {
                 </div>
 
                 <div class="form-group col-md-2"><p>Results of DSE</p></div>
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-4">
                     <label><input name="rt_ech_dse" id="rt_ech_dse" type="radio" value="0"> Normal - no ischemia</label><br>
                     <label><input name="rt_ech_dse" id="rt_ech_dse" type="radio" value="1"> Abnormal - ischemia present</label>
+                    <label><input name="rt_ech_dse" id="rt_ech_dse" type="radio" value="2"> Inconclusive - Target HR not achieved</label>
                 </div>
 
             </div>
@@ -587,22 +590,40 @@ if (isset($_POST['annual_update'])) {
             </div>
         </div>
 
-        <div class="form-row" id="row_120_mo" style="display:none">
-            <div class="form-group col-md-6">
-                <label for="post_mal_type">What immunosuppressants is patient taking? (10 year update)</label>
-                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_120_mo___1">tacrolimus (IR)</label></div>
-                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_120_mo___2">envarsus</label></div>
-                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_120_mo___3">astagraf</label></div>
-                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_120_mo___4">cellcept</label></div>
-                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_120_mo___5">myfortic</label></div>
-                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_120_mo___6">Pred > 5 mg/day</label></div>
-                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_120_mo___7">Pred <= 5 mg/day</label></div>
-                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_120_mo___8">Siro</label></div>
-                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_120_mo___9">Evero</label></div>
-                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_120_mo___10">AZA</label></div>
-                <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_120_mo___12">CSA</label></div>
+            <div class="form-row" id="row_120_mo" style="display:none">
+                <div class="form-group col-md-6">
+                    <label for="post_mal_type">What immunosuppressants is patient taking? (10 year update)</label>
+                    <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_120_mo___1">tacrolimus (IR)</label></div>
+                    <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_120_mo___2">envarsus</label></div>
+                    <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_120_mo___3">astagraf</label></div>
+                    <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_120_mo___4">cellcept</label></div>
+                    <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_120_mo___5">myfortic</label></div>
+                    <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_120_mo___6">Pred > 5 mg/day</label></div>
+                    <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_120_mo___7">Pred <= 5 mg/day</label></div>
+                    <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_120_mo___8">Siro</label></div>
+                    <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_120_mo___9">Evero</label></div>
+                    <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_120_mo___10">AZA</label></div>
+                    <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_120_mo___12">CSA</label></div>
+                </div>
             </div>
-        </div>
+
+
+            <div class="form-row" id="row_morethan120_mo" style="display:none">
+                <div class="form-group col-md-6">
+                    <label for="post_mal_type">What immunosuppressants is patient taking? (More than 10 years update)</label>
+                    <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_morethan120_mo___1">tacrolimus (IR)</label></div>
+                    <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_morethan120_mo___2">envarsus</label></div>
+                    <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_morethan120_mo___3">astagraf</label></div>
+                    <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_morethan120_mo___4">cellcept</label></div>
+                    <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_morethan120_mo___5">myfortic</label></div>
+                    <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_morethan120_mo___6">Pred > 5 mg/day</label></div>
+                    <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_morethan120_mo___7">Pred <= 5 mg/day</label></div>
+                    <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_morethan120_mo___8">Siro</label></div>
+                    <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_morethan120_mo___9">Evero</label></div>
+                    <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_morethan120_mo___10">AZA</label></div>
+                    <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="immuno_morethan120_mo___12">CSA</label></div>
+                </div>
+            </div>
 
         <hr>
 
@@ -675,6 +696,9 @@ if (isset($_POST['annual_update'])) {
             } else if (selection == 'angio') {
                 $('#angio').show();
                 $('#dse').hide();
+            } else {
+                $('#angio').hide();
+                $('#dse').hide();
             }
         });
 
@@ -682,7 +706,7 @@ if (isset($_POST['annual_update'])) {
         $('#annual_year').on('change',function(){
 
             var selection = $(this).val();
-            const update_mo = [3,6,12,24,36,48,60,72,84,96,108,120];
+            const update_mo = [3,6,12,24,36,48,60,72,84,96,108,120,'morethan120'];
 
             update_mo.forEach(function (item) {
 
