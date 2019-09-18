@@ -57,10 +57,10 @@ class HeartTransplant extends \ExternalModules\AbstractExternalModule {
         //$this->emDebug($save_id, $codedArray, $textArray, $dateArray); exit;
 
 
-        $mrn_fix = $textArray['mrn_fix'];
+        $stanford_mrn = $textArray['stanford_mrn'];
         $dot = $dateArray['dot'];
 
-        $filter = "[mrn_fix] = '{$mrn_fix}'";
+        $filter = "[stanford_mrn] = '{$stanford_mrn}'";
         if (isset($dot)) {
             $filter .= " AND [dot] = '{$dot}'";
         }
@@ -69,7 +69,7 @@ class HeartTransplant extends \ExternalModules\AbstractExternalModule {
             'return_format'    => 'json',
             //'records'          => $record,
             //'events'           => $filter_event,
-            'fields'           => array(REDCap::getRecordIdField(), 'mrn_fix', 'dot'),
+            'fields'           => array(REDCap::getRecordIdField(), 'stanford_mrn', 'dot'),
             'filterLogic'      => $filter
         );
 
@@ -163,10 +163,10 @@ class HeartTransplant extends \ExternalModules\AbstractExternalModule {
 
         //$this->emDebug($save_id, $codedArray, $textArray, $dateArray); exit;
 
-        //check that the mrn_fix and dot don't already exist
-        $mrn_fix = $textArray['mrn_fix'];  //todo: check that it's only numbers
+        //check that the stanford_mrn and dot don't already exist
+        $stanford_mrn = $textArray['stanford_mrn'];  //todo: check that it's only numbers
 
-        if (!is_numeric($mrn_fix)) {
+        if (!is_numeric($stanford_mrn)) {
             $status = array(
                 'status' => false,
                 'msg'    => "Please check your entry! The MRN should only contain numbers."
@@ -175,7 +175,7 @@ class HeartTransplant extends \ExternalModules\AbstractExternalModule {
         }
         $dot = $dateArray['dot'];          //todo: check that it's date. should be handled by cal widget
 
-        $filter = "[mrn_fix] = '{$mrn_fix}'";
+        $filter = "[stanford_mrn] = '{$stanford_mrn}'";
         if (isset($dot)) {
             $filter .= " AND [dot] = '{$dot}'";
         }
@@ -184,7 +184,7 @@ class HeartTransplant extends \ExternalModules\AbstractExternalModule {
             'return_format'    => 'json',
             //'records'          => $record,
             //'events'           => $filter_event,
-            'fields'           => array(REDCap::getRecordIdField(), 'mrn_fix', 'dot'),
+            'fields'           => array(REDCap::getRecordIdField(), 'stanford_mrn', 'dot'),
             'filterLogic'      => $filter
         );
 
@@ -517,7 +517,7 @@ class HeartTransplant extends \ExternalModules\AbstractExternalModule {
 
         //$this->emDebug($save_id, $codedArray, $textArray, $dateArray,$checkedArray); exit;
 /*
-        //check that the mrn_fix and dot don't already exist
+        //check that the stanford_mrn and dot don't already exist
         $stanford_mrn = $textArray['stanford_mrn'];
 
         $this->emDebug("STANFORD MRN:". $stanford_mrn);

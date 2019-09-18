@@ -102,8 +102,8 @@ if(isset($_POST['edit_entry'])) {
         <hr>
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="mrn">Stanford Medical Record Number </label>
-                <input type="text" class="form-control" id="mrn_fix" placeholder="Do not include hyphens or spaces">
+                <label for="stanford_mrn">Stanford Medical Record Number </label>
+                <input type="text" class="form-control" id="stanford_mrn" placeholder="Do not include hyphens or spaces">
             </div>
             <div class="form-group col-md-4">
                 <label>Date of Transplant</label>
@@ -193,7 +193,7 @@ if(isset($_POST['edit_entry'])) {
            };
 
            let textValues = {
-               "mrn_fix" : $("input#mrn_fix.form-control").val()
+               "stanford_mrn" : $("input#stanford_mrn.form-control").val()
            };
 
            let formValues = {

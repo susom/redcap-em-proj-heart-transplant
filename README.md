@@ -9,7 +9,7 @@
 ### The fields that are collected in this form are:
 Field label | REDCap variable | Value type
 --- | --- | ---
-Stanford Medical Record Number | mrn_fix
+Stanford Medical Record Number | stanford_mrn
 Date of Transplant | dot
 First Name | first_name
 Last Name | last_name
@@ -72,7 +72,7 @@ ___
 ### The fields that are collected in this form are:
 Field label | REDCap variable | Value type
 --- | --- | ---
-Stanford Medical Record Number | mrn_fix
+Stanford Medical Record Number | stanford_mrn
 Date of Transplant | dot
 Cause of Death | out_mode_death | See coding table below
 Date of Death | dem_date_of_death

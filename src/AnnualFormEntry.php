@@ -362,7 +362,7 @@ if (isset($_POST['annual_update'])) {
                 <div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input" value="rt_cth_vessel_angiogram___99">Other</label></div>
             </div>
             <div class="form-group col-md-4">
-                <label for="mrn">MIT if known</label>
+                <label for="rt_cth_mit">MIT if known</label>
                 <input type="text" class="form-control" id="rt_cth_mit" placeholder="">
             </div>
         </div>
