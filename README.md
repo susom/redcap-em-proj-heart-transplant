@@ -74,27 +74,29 @@ Field label | REDCap variable | Value type
 --- | --- | ---
 Stanford Medical Record Number | stanford_mrn
 Date of Transplant | dot
-Cause of Death | out_mode_death | See coding table below
+Cause of Death | r_mode_death | See coding table below
 Date of Death | dem_date_of_death
 ---
 
 ## Coded value mappings
 
-### Cause of Death : out_mode_death
+### Cause of Death : r_mode_death
 Code | Label 
 --- | --- 
-1 |	Cellular Rejection
-2|  AMR
-3|	PGD
-4|	Infection
-5|	Non-Cardiac/Transplant Related
-6|	CAV
-7|	Unknown sudden cardiac death
-8|Complications of malignancy
-9|Surgical Complications
-10|Pulmonary Disease/Respiratory Failure
-11|Pulmonary Embolus
-99|Other
+1 |	Acute Cellular Rejection
+2 |	Antibody Mediated rejection
+3 |	Primary Graft Dysfunction
+4 |	Infection
+5 |	Non- Cardiac/Transplant Related
+6 |	Cardiac Allograft Vasculopathy
+7 |	Unknown sudden cardiac death
+8 |	Complications of malignancy
+9 |	Surgical Complications
+10 |	Pulmonary Disease/Respiratory Failure
+11 |	Pulmonary Embolus
+12 |	Multiorgan failure
+13 |	Stroke/CVD
+99 |	Other
 
 
 ### Data Entry Checks

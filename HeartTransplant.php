@@ -26,8 +26,6 @@ class HeartTransplant extends \ExternalModules\AbstractExternalModule {
 
     function editDeathData($coded, $text, $date) {
 
-        $this->emDebug($coded, $text, $date);
-
         //check that the MRN and DOT finds a match
         $codedArray = array();
         foreach ($coded as $field_name => $field_value) {
@@ -78,7 +76,7 @@ class HeartTransplant extends \ExternalModules\AbstractExternalModule {
         //$this->emDebug($filter, $params, isset($dot));
         $records = json_decode($q, true);
 
-        $this->emDebug($records);
+        //$this->emDebug($records);
         if (empty($records)) {
 
             $status = array(
@@ -92,7 +90,7 @@ class HeartTransplant extends \ExternalModules\AbstractExternalModule {
 
         //todo: check that there was only one found. if multiple found, notify the admin
         $count = sizeof($records);
-        $this->emDebug("count is $count.");
+
         if ($count > 1) {
             $msg[] = "Please notify your admin that $count records were found with this MRN  and date of transplant.";
             $this->emDebug("MORE THAN 1 record found!");
@@ -109,24 +107,33 @@ class HeartTransplant extends \ExternalModules\AbstractExternalModule {
             $dateArray   //REDCap won't rewrite same value
         );
 
-        $this->emDebug($save_id, $codedArray, $textArray, $dateArray,$data);
+        //$this->emDebug($save_id, $codedArray, $textArray, $dateArray,$data);
 
         $q = REDCap::saveData('json', json_encode(array($data)));
 
         if (empty($q['errors'])) {
-            $msg[] = "Successfully saved in record $save_id";
+            $msg[] = "Successfully edited death data in record $save_id";
              $status = array(
                 'status' => true,
                 'msg'    => implode("\n", $msg)
             );
         } else {
             $msg[] = "There was an issue editing the record. Please notify your admin.";
+            $msg[] = $q['errors'];
             $status = array(
                 'status' => false,
                 'msg'    => implode("\n", $msg)
             );
+            $this->emDebug($q);
         }
-        $this->emDebug($q);
+
+        REDCap::logEvent(
+            "Heart Transplant EM",  //action
+            implode('  ',$msg), //changes
+            NULL, //sql optional
+            $record //record optional
+        );
+
         return $status;
 
 

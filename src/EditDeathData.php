@@ -119,8 +119,8 @@ if(isset($_POST['edit_entry'])) {
         <hr>
         <div class="form-row">
             <div class="form-group col-md-6">
-        <label for="out_mode_death">Cause of Death</label>
-        <select id="out_mode_death" class="form-control">
+        <label for="r_mode_death">Cause of Death</label>
+        <select id="r_mode_death" class="form-control">
             <option></option>
             <option value='1'>Cellular Rejection</option>
             <option value='2'>AMR</option>
@@ -184,7 +184,7 @@ if(isset($_POST['edit_entry'])) {
             */
 
            let codedValues = {
-               "out_mode_death" : $("#out_mode_death").val()
+               "r_mode_death" : $("#r_mode_death").val()
            };
 
            let dateValues = {
