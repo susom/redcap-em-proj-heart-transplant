@@ -223,7 +223,7 @@ if (isset($_POST['annual_update'])) {
                 <div class="form-group col-md-4">
                     <label>Dialysis Start Date (month/year)</label>
                     <div class='input-group date'>
-                        <input name="dialysisstart" type='text' id='dialysisstart' class="form-control"
+                        <input name="dialysisstartdate" type='text' id='dialysisstartdate' class="form-control"
                                autocomplete="off"/>
                         <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
@@ -484,7 +484,7 @@ if (isset($_POST['annual_update'])) {
         // turn off cached entries
         $("form :input").attr("autocomplete", "off");
 
-        $('#dialysisstart, #icddate, #ppacedate, #solidtumordate, #melanomadate').datepicker({
+        $('#dialysisstartdate, #icddate, #ppacedate, #solidtumordate, #melanomadate').datepicker({
             format: "yyyy-mm",
             startView: "months",
             minViewMode: "months"
@@ -592,7 +592,7 @@ if (isset($_POST['annual_update'])) {
             };
 
             let dateMonthValues = {
-                "dialysisstart"       : $("input#dialysisstart.form-control").val(),
+                "dialysisstartdate"   : $("input#dialysisstartdate.form-control").val(),
                 "icddate"             : $("input#icddate.form-control").val(),
                 "ppacedate"           : $("input#ppacedate.form-control").val(),
                 "solidtumordate"       : $("input#solidtumordate.form-control").val(),
