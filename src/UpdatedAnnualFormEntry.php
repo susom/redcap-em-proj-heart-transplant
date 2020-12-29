@@ -171,7 +171,7 @@ if (isset($_POST['annual_update'])) {
                 <select id="annual_year" class="form-control">
                     <option></option>
                     <option value='mo3'>3 months</option>
-                    <option value='no6'>6 months</option>
+                    <option value='mo6'>6 months</option>
                     <option value='yr1'>1 year</option>
                     <option value='yr2'>2 years</option>
                     <option value='yr3'>3 years</option>
