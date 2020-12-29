@@ -36,6 +36,11 @@
         "name": "Patient Homepage",
         "icon": "gear",
         "url": "PatientHomepage.php"
+      },
+      {
+        "name": "DEMO: NEW: Enter annual update for an existing record",
+        "icon": "gear",
+        "url": "src/UpdatedAnnualFormEntry.php"
       }
     ]
   },

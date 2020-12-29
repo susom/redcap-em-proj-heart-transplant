@@ -711,13 +711,13 @@ if (isset($_POST['annual_update'])) {
             update_mo.forEach(function (item) {
 
                 selected_block = 'row_'+item+'_mo';
-                console.log(item, selected_block);
+                //console.log(item, selected_block);
 
                 if (item == selection) {
-                    console.log('selected is '+selected_block);
+                    //console.log('selected is '+selected_block);
                     $('#'+selected_block).show();
                 } else  {
-                    console.log('hidden is '+selected_block);
+                    //console.log('hidden is '+selected_block);
                     $('#'+selected_block).hide();
                 }
 
@@ -771,9 +771,9 @@ if (isset($_POST['annual_update'])) {
                 method: "POST"
             })
                 .done(function (data) {
-                    console.log("DONE Adding update", data);
-                    console.log("FFUP", parseInt(data.r_followup_dialysis));
-                    console.log("DOT YEAR", data.dot_year);
+                    //console.log("DONE Adding update", data);
+                    //console.log("FFUP", parseInt(data.r_followup_dialysis));
+                    //console.log("DOT YEAR", data.dot_year);
                     if (data.result === 'success') {
                         $('.hidden-till-found').show();
                         $('#found-row').show();
@@ -794,7 +794,7 @@ if (isset($_POST['annual_update'])) {
 
                 })
                 .fail(function (data) {
-                    console.log("DATA: ", data);
+                    //("DATA: ", data);
                     alert("error:", data);
                 })
                 .always(function () {
@@ -856,7 +856,7 @@ if (isset($_POST['annual_update'])) {
                  // checkedValues["'"+$(this).val()+"'"]=1;
              });
 
-             console.log(checkedValues);
+             //console.log(checkedValues);
 
 
             let formValues = {
@@ -876,7 +876,7 @@ if (isset($_POST['annual_update'])) {
                 method: "POST"
             })
                 .done(function (data) {
-                    console.log("DONE Adding update", data);
+                    //console.log("DONE Adding update", data);
 
                     if (data.result === 'success') {
                         alert(data.msg);
@@ -887,7 +887,7 @@ if (isset($_POST['annual_update'])) {
 
                 })
                 .fail(function (data) {
-                    console.log("DATA: ", data);
+                    //console.log("DATA: ", data);
                     alert("error:", data);
                 })
                 .always(function () {

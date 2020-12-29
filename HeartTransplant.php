@@ -23,7 +23,6 @@ class HeartTransplant extends \ExternalModules\AbstractExternalModule {
 
     use emLoggerTrait;
 
-
     function editDeathData($coded, $text, $date) {
 
         //check that the MRN and DOT finds a match
@@ -131,7 +130,7 @@ class HeartTransplant extends \ExternalModules\AbstractExternalModule {
             "Heart Transplant EM",  //action
             implode('  ',$msg), //changes
             NULL, //sql optional
-            $record //record optional
+            $save_id //record optional
         );
 
         return $status;
@@ -200,7 +199,7 @@ class HeartTransplant extends \ExternalModules\AbstractExternalModule {
         //$this->emDebug($filter, $params, isset($dot));
         $records = json_decode($q, true);
 
-        $this->emDebug($records);
+        //$this->emDebug($records);
         if (!empty($records)) {
 
             $status = array(
@@ -242,7 +241,7 @@ class HeartTransplant extends \ExternalModules\AbstractExternalModule {
     }
 
     function determineDateOfTransplant($stanford_mrn, $last_name) {
-        $this->emDebug("STANFORD MRN:". $stanford_mrn . " LASTNAME: ". $last_name);
+        $this->emDebug("Checking STANFORD MRN: ". $stanford_mrn . " LASTNAME: ". $last_name);
 
         if (empty($stanford_mrn)) {
 
@@ -375,10 +374,11 @@ class HeartTransplant extends \ExternalModules\AbstractExternalModule {
     }
 
 
-    function saveAnnualUpdate($coded, $text, $date, $date_month, $checked, $transplant_num) {
+    /**
+     *
+     */
+    function saveAnnualUpdate($coded, $text, $date, $date_month, $checked, $transplant_num, $annual_year) {
         $msg = array();
-
-        //$this->emDebug($coded, $text, $date, $date_month, $checked, $transplant_num);
 
         //double check taht the transplant number and dot didn't go missing in the return trip
         if (empty($transplant_num)) {
@@ -540,47 +540,47 @@ class HeartTransplant extends \ExternalModules\AbstractExternalModule {
 
         $filter = "[stanford_mrn] = '{$stanford_mrn}'";
 
-        $params = array(
-            'return_format'    => 'json',
-            //'records'          => $record,
-            //'events'           => $filter_event,
-            'fields'           => array(REDCap::getRecordIdField(), 'stanford_mrn', 'dot'),
-            'filterLogic'      => $filter
-        );
+                $params = array(
+                    'return_format'    => 'json',
+                    //'records'          => $record,
+                    //'events'           => $filter_event,
+                    'fields'           => array(REDCap::getRecordIdField(), 'stanford_mrn', 'dot'),
+                    'filterLogic'      => $filter
+                );
 
-        $q = REDCap::getData($params);
+                $q = REDCap::getData($params);
 
-        $this->emDebug($filter, $params, isset($dot));
-        $records = json_decode($q, true);
+                $this->emDebug($filter, $params, isset($dot));
+                $records = json_decode($q, true);
 
-        $this->emDebug($records);
-        if (empty($records)) {
+                $this->emDebug($records);
+                if (empty($records)) {
 
-            $status = array(
-                'status' => false,
-                'msg'    => "Please check your entry! The MRN was not found."
-            );
-            return $status;
-        }
+                    $status = array(
+                        'status' => false,
+                        'msg'    => "Please check your entry! The MRN was not found."
+                    );
+                    return $status;
+                }
 
-        $msg = null;
+                $msg = null;
 
-        //todo: check that there was only one MRN found. if multiple found, pick the most recent date of transplant
-        $count = sizeof($records);
-        $this->emDebug("count is $count.");
-        if ($count > 1) {
+                //todo: check that there was only one MRN found. if multiple found, pick the most recent date of transplant
+                $count = sizeof($records);
+                $this->emDebug("count is $count.");
+                if ($count > 1) {
 
-            list($save_id, $dot) = $this->findTransplantNumberMaxDate($records);
+                    list($save_id, $dot) = $this->findTransplantNumberMaxDate($records);
 
 
-            $msg[] = "Please notify your admin that $count records were found with this MRN  and date of transplant  $dot will used.";
-            $this->emDebug("MORE THAN 1 record found!");
-        } else {
-            //get the record_id from the retrieved record
-            $save_id = (current($records))[REDCap::getRecordIdField()];
-            $dot = (current($records))['dot'];
-        }
- */
+                    $msg[] = "Please notify your admin that $count records were found with this MRN  and date of transplant  $dot will used.";
+                    $this->emDebug("MORE THAN 1 record found!");
+                } else {
+                    //get the record_id from the retrieved record
+                    $save_id = (current($records))[REDCap::getRecordIdField()];
+                    $dot = (current($records))['dot'];
+                }
+         */
 
 
         $data = array_merge(
@@ -613,13 +613,155 @@ class HeartTransplant extends \ExternalModules\AbstractExternalModule {
         //return true;
         return $status;
 
-}
+    }
 
 
-/**
- * @param $transplant_num
+    /**
+     * @param $coded
+     * @param $text
+     * @param $date
+     * @param $date_month
+     * @param $checked
+     * @param $transplant_num
+     * @param $annual_year
+     * @return array
+     * @throws \Exception
+     */
+    function saveAnnualUpdate2($coded, $text, $date, $date_month, $checked, $transplant_num, $annual_year) {
+        $msg = array();
 
- */
+        //double check that the transplant number and dot didn't go missing in the return trip
+        if (empty($transplant_num)) {
+            $msg[] = "Transplant number is missing. Please notify your admin.";
+            $status = array(
+                'status' => false,
+                'msg' => implode("\n", $msg)
+            );
+            return $status;
+        }
+
+        //CHANGE REQUEST: Dec 2020: don't use repeating forms
+        //Eric Henrickson is requesting that each annual year be saved to a separate field that he created in the redcap project.
+
+        //check that annual_year is one of expected string
+        if (empty($annual_year)) {
+            $msg[] = "The followup year must be selected to continue. Please select from the dropdown 'Annual Year'";
+            $status = array(
+                'status' => false,
+                'msg' => implode("\n", $msg)
+            );
+            return $status;
+        }
+
+        $data_array = array();
+
+        //Check for existence of  solid tumor malignancy // is this still neede??
+        $mal_prefix = $this->determineWhichMalignancyFields($transplant_num);
+
+        //deal with the coded values
+        $codedArray = array();
+        foreach ($coded as $field_name => $field_value) {
+            $codedArray[$field_name.$annual_year] = db_escape($field_value);
+        }
+
+        $textArray = array();
+        foreach ($text as $field_name => $field_value) {
+
+            if (!empty($field_value) && ($field_name !== 'stanford_mrn')) {
+                $textArray[$field_name.$annual_year] = $field_value;
+            }
+        }
+
+        $dateArray = array();
+        foreach ($date as $field_name => $field_value) {
+            //$this->emDebug($field_name, $field_value, empty($field_value));
+
+            if (!empty($field_value)) {
+                //handle mal_date_sot, mal_date_ptld differently. there may be 2 of them so use first available field
+
+                //$this->emDebug($field_name, strval($field_name),'mal_date_sot', strval(trim($field_name)) ===strval('mal_date_sot'), strcmp($field_name, 'mal_date_sot'));
+                //need to trim! otherwise doesn't match
+                if (strval(trim($field_name)) === 'mal_date_sot') {
+                    if ($mal_prefix === false) {
+                        //both malignancy fields are used, so don't load
+                        $msg[] = "Malignancy fields (date and type) were not entered. Please notify your admin.";
+                        continue;
+                    }
+                    $field_name = 'mal_date_sot'.$mal_prefix;
+                }
+
+
+                $date_cand = new \DateTime($field_value);
+                $date_str = $date_cand->format('Y-m-d');
+
+
+                $dateArray[$field_name.$annual_year] = $date_str;
+            }
+        }
+
+        $dateMonthArray = array();
+        foreach ($date_month as $field_name => $field_value) {
+
+            if (!empty($field_value)) {
+                $date_cand = new \DateTime($field_value);
+                $date_str = $date_cand->format('Y-m');
+
+                $dateArray[$field_name.$annual_year] = $date_str;
+            }
+        }
+
+        $checkedArray = array();
+        foreach ($checked as $key => $checked_field ) {
+            //fields are like 'post_mal_type___1' vs 'post_mal_type_2___1'
+            //$this->emDebug($checked_field, strval(trim($checked_field)),'post_mal_type', stristr(strval(trim($checked_field)),'post_mal_type'));
+            if (stristr(strval(trim($checked_field)),'___')) {
+                //USED TO check that the date was set, no longer
+                //found mal_date_sot checked fields, so add suffix
+
+
+                $re = '/(?<fieldname>.*)(?<code>___\d*)/m';
+
+                preg_match_all($re, trim($checked_field), $matches, PREG_SET_ORDER, 0);
+
+                // Print the entire match result
+                $checked_field = $matches[0]['fieldname'].$annual_year.$matches[0]['code'];
+
+            }
+
+            $checkedArray[$checked_field] = 1;
+        }
+
+
+
+        $data = array_merge(
+            array(REDCap::getRecordIdField() => $transplant_num),
+            $codedArray,
+            $textArray,
+            $dateArray,
+            $dateMonthArray,
+            $checkedArray
+        );
+
+        $q = REDCap::saveData('json', json_encode(array($data)));
+
+        if (empty($q['errors'])) {
+            $msg[] = "Successfully saved in record $transplant_num";
+            $status = array(
+                'status' => true,
+                'msg'    => implode("\n", $msg)
+            );
+        } else {
+            $msg[] = "There was an issue saving this record $transplant_num. Please notify your admin.";
+            $status = array(
+                'status' => false,
+                'msg'    => implode("\n", $msg)
+            );
+            $this->emError($q);
+        }
+
+        return $status;
+    }
+
 
     /**
      * There are two sets of malignancy fields
