@@ -61,7 +61,7 @@ if (isset($_POST['search_mrn'])) {
 if (isset($_POST['annual_update'])) {
     //$module->emDebug($_REQUEST);
 
-    $status = $module->saveAnnualUpdate2($_POST['codedValues'], $_POST['textValues'], $_POST['dateValues'],
+    $status = $module->saveAnnualUpdate2($_POST['codedValues'], $_POST['numberValues'], $_POST['textValues'], $_POST['dateValues'],
                                         $_POST['dateMonthValues'], $_POST['checkedValues'], $_POST['transplant_num'],
     $_POST['annual_year']);
 
@@ -125,9 +125,13 @@ if (isset($_POST['annual_update'])) {
 
     <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+
+
+    <script type='text/javascript' src="<?php echo $module->getUrl('/js/annual_form.js', true, true) ?>"></script>
+
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-    <link rel="stylesheet" type="text/css" href="<?php echo $module->getUrl("css/AnnualFormEntry.css") ?>" />
+    <link rel="stylesheet" type="text/css" href="<?php echo $module->getUrl("css/AnnualFormEntry.css", true, true) ?>" />
 
 
 </head>
@@ -216,29 +220,27 @@ if (isset($_POST['annual_update'])) {
 
             <div class="form-row">
                 <div class="form-group col-md-3"><p>Did dialysis start in past year?</p></div>
-                <div class="form-group col-md-1">
-                    <label><input name="dialysis" id="dialysis" type="radio" value="1">Yes</label><br>
-                    <label><input name="dialysis" id="dialysis" type="radio" value="0">No</label>
+                <div class="form-group col-md-1" id="r_dialysis" >
+                    <input name="dialysis" id="dialysis" type="radio" value="1"> Yes</><br>
+                    <input name="dialysis" id="dialysis" type="radio" value="0"> No</>
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-4" id ="yes-dialysis" style="display:none">
                     <label>Dialysis Start Date (month/year)</label>
                     <div class='input-group date'>
                         <input name="dialysisstartdate" type='text' id='dialysisstartdate' class="form-control"
                                autocomplete="off"/>
-                        <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                     </div>
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group col-md-3"><p>ICD?</p></div>
-                <div class="form-group col-md-1">
-                    <label><input name="icd" id="icd" type="radio" value="1">Yes</label><br>
-                    <label><input name="icd" id="icd" type="radio" value="0">No</label>
+                <div class="form-group col-md-1" id="r_icd">
+                    <label><input name="icd" id="icd" type="radio" value="1"> Yes</label><br>
+                    <label><input name="icd" id="icd" type="radio" value="0"> No</label>
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-4" id ="yes-icd" style="display:none">
                     <label>ICD implant date</label>
                     <div class='input-group date'>
                         <input name="icddate" type='text' id='icddate' class="form-control" autocomplete="off"/>
@@ -249,11 +251,11 @@ if (isset($_POST['annual_update'])) {
 
             <div class="form-row">
                 <div class="form-group col-md-3"><p>Permanent Pacemaker past year?</p></div>
-                <div class="form-group col-md-1">
-                    <label><input name="ppace" id="ppace" type="radio" value="1">Yes</label><br>
-                    <label><input name="ppace" id="ppace" type="radio" value="0">No</label>
+                <div class="form-group col-md-1"  id="r_ppace">
+                    <label><input name="ppace" id="ppace" type="radio" value="1"> Yes</label><br>
+                    <label><input name="ppace" id="ppace" type="radio" value="0"> No</label>
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-4" id ="yes-ppace" style="display:none">
                     <label>Permanent pacemaker date</label>
                     <div class='input-group date'>
                         <input name="ppacedate" type='text' id='ppacedate' class="form-control" autocomplete="off"/>
@@ -264,11 +266,11 @@ if (isset($_POST['annual_update'])) {
 
             <div class="form-row">
                 <div class="form-group col-md-3"><p>PTLD Diagnosis in past year?</p></div>
-                <div class="form-group col-md-1">
-                    <label><input name="ptld" id="ptld" type="radio" value="1">Yes</label><br>
-                    <label><input name="ptld" id="ptld" type="radio" value="0">No</label>
+                <div class="form-group col-md-1" id="r_ptld">
+                    <label><input name="ptld" id="ptld" type="radio" value="1"> Yes</label><br>
+                    <label><input name="ptld" id="ptld" type="radio" value="0"> No</label>
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-4" id ="yes-ptld" style="display:none">
                     <label>PTLD diagnosis date</label>
                     <div class='input-group date'>
                         <input name="ptlddate" type='text' id='ptlddate' class="form-control" autocomplete="off"/>
@@ -280,11 +282,11 @@ if (isset($_POST['annual_update'])) {
 
             <div class="form-row">
                 <div class="form-group col-md-3"><p>Solid organ tumor diagnosis in past year?</p></div>
-                <div class="form-group col-md-1">
+                <div class="form-group col-md-1" id="r_solidtumor">
                     <label><input name="solidtumor" id="solidtumor" type="radio" value="1">Yes</label><br>
                     <label><input name="solidtumor" id="solidtumor" type="radio" value="0">No</label>
                 </div>
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-3 yes-solidtumor" style="display:none">
                     <label>Solid organ tumor date</label>
                     <div class='input-group date'>
                         <input name="solidtumordate" id='solidtumordate' type='text' class="form-control"
@@ -294,7 +296,7 @@ if (isset($_POST['annual_update'])) {
                 </div>
                 <div class="form-group col-md-1"></div>
 
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-3 yes-solidtumor" style="display:none">
                     <label for="solidtumortype">Solid organ tumor type</label>
                     <div class="form-check">
                         <label class="form-check-label"><input type="checkbox" class="form-check-input"
@@ -329,16 +331,17 @@ if (isset($_POST['annual_update'])) {
                                                                value="solidtumortype___99">Other</label>
                     </div>
                 </div>
+                </--div>
             </div>
 
 
             <div class="form-row">
                 <div class="form-group col-md-3"><p>Melanoma diagnosis in past year?</p></div>
-                <div class="form-group col-md-1">
+                <div class="form-group col-md-1" id="r_melanoma">
                     <label><input name="melanoma" id="melanoma" type="radio" value="1">Yes</label><br>
                     <label></label><input name="melanoma" id="melanoma" type="radio" value="0">No</label>
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-4" id ="yes-melanoma" style="display:none">
                     <label>Melanoma in past year date</label>
                     <div class='input-group date'>
                         <input name="melanomadate" type='text' id='melanomadate' class="form-control" autocomplete="off"/>
@@ -349,15 +352,15 @@ if (isset($_POST['annual_update'])) {
 
             <div class="form-row">
                 <div class="form-group col-md-3"><p>Transthoracic Echo?</p></div>
-                <div class="form-group col-md-1">
+                <div class="form-group col-md-1" id="r_tte">
                     <label><input name="tte" id="tte" type="radio" value="1">Yes</label><br>
                     <label><input name="tte" id="tte" type="radio" value="0">No</label>
                 </div>
-                <div class="form-group col-md-2"><p>TTE type</p></div>
-                <div class="form-group col-md-4">
-                    <label></label><input name="ttetype" id="ttetype" type="radio" value="1"> Dobutamine stress</label><br>
-                    <label></label><input name="ttetype" id="ttetype" type="radio" value="2"> Exercise stress</label><br>
-                    <label></label><input name="ttetype" id="ttetype" type="radio" value="3"> Nuclear imaging</label>
+                <div class="form-group col-md-2 yes-tte" style="display:none"><p>TTE type</p></div>
+                <div class="form-group col-md-4 yes-tte" style="display:none">
+                    <label><input name="ttetype" id="ttetype" type="radio" value="1"> Dobutamine stress</label><br>
+                    <label><input name="ttetype" id="ttetype" type="radio" value="2"> Exercise stress</label><br>
+                    <label><input name="ttetype" id="ttetype" type="radio" value="3"> Nuclear imaging</label>
                 </div>
             </div>
 
@@ -371,7 +374,7 @@ if (isset($_POST['annual_update'])) {
                 <div class="col-md-1"></div>
 
                 <div class="form-group col-md-2"><p>Response to dobutamine stress</p></div>
-                <div class="form-group col-md-2">
+                <div class="form-group col-md-3">
                     <label><input name="dobutresponse" id="dobutresponse" type="radio" value="1"> No inducible ischemia</label><br>
                     <label><input name="dobutresponse" id="dobutresponse" type="radio" value="2"> Inducible ischemia</label><br>
                     <label><input name="dobutresponse" id="dobutresponse" type="radio" value="3"> Non-diagnostic</label>
@@ -388,7 +391,7 @@ if (isset($_POST['annual_update'])) {
                 <div class="col-md-1"></div>
 
                 <div class="form-group col-md-2"><p>Response to exercise stress</p></div>
-                <div class="form-group col-md-2">
+                <div class="form-group col-md-3">
                     <label><input name="exerresponse" id="exerresponse" type="radio" value="1"> No inducible ischemia</label><br>
                     <label><input name="exerresponse" id="exerresponse" type="radio" value="2"> Inducible ischemia</label><br>
                     <label><input name="exerresponse" id="exerresponse" type="radio" value="3"> Non-diagnostic</label>
@@ -415,17 +418,21 @@ if (isset($_POST['annual_update'])) {
 
             <div class="form-row"><br>
                 <div class="form-group col-md-3"><p>Coronary Angiogram</p></div>
-                <div class="form-group col-md-1">
+                <div class="form-group col-md-1" id="r_angio">
                     <label><input name="coro_angio" id="coro_angio" type="radio" value="1"> Yes</label><br>
                     <label><input name="coro_angio" id="coro_angio" type="radio" value="0"> No</label>
                 </div>
-                <div class="form-group col-md-2"><p>Angiogram Results (ISHLT)</p></div>
-                <div class="form-group col-md-2">
-                    <label><input name="angio_result" id="angio_result" type="radio" value="1"> CAV 0</label><br>
-                    <label><input name="angio_result" id="angio_result" type="radio" value="2"> CAV 1</label><br>
-                    <label><input name="angio_result" id="angio_result" type="radio" value="3"> CAV 2</label><br>
-                    <label><input name="angio_result" id="angio_result" type="radio" value="4"> CAV 4</label>
+                <div class="form-group col-md-2 yes-angio" style="display:none"><p>Angiogram Results (ISHLT)</p></div>
+                <div class="form-group col-md-6 yes-angio" style="display:none" >
+                    <label><input name="angio_result" id="angio_result" type="radio" value="1"> CAV 0 - No detectable angiographic lesion</label><br>
+                    <label><input name="angio_result" id="angio_result" type="radio" value="2"> CAV 1 - Angiographic left main (LM) <50%, or primary vessel with maximum lesion of <70%, or any branch stenosis <70% (including diffuse narrowing) without allograft dysfunction</label><br>
+                    <label><input name="angio_result" id="angio_result" type="radio" value="3"> CAV 2 – Angiographic left main (LM) ≤ 50%; a single primary vessel ≥70%, or isolated branch stenosis ≥70% in branches of 2 systems, without allograft dysfunction</label><br>
+                    <label><input name="angio_result" id="angio_result" type="radio" value="4"> CAV 3 – Angiographic LM ≥50%, or two or more primary vessels ≥70% stenosis or isolated branch stenosis ≥70% in all 3 systems; or ISHLT CAV1 or CAV2 with allograft dysfunction (defined as LVEF ≤45% usually in the presence of regional wall motion abnormalities) or evidence of significant restrictive physiology (which is common but not specific)</label>
                 </div>
+
+            </div>
+            <div class="form-row yes-angio" style="display:none">
+                <div class="col-md-4"></div>
                 <div class="form-group col-md-3">
                     <label for="angiogram_mit">Angiogram MIT (mm)</label>
                     <input type="text" class="form-control" id="angiogram_mit" placeholder="">
@@ -434,11 +441,11 @@ if (isset($_POST['annual_update'])) {
 
             <div class="form-row"><br>
                 <div class="form-group col-md-3"><p>PCI performed</p></div>
-                <div class="form-group col-md-1">
+                <div class="form-group col-md-1" id="r_pci">
                     <label><input name="pci" id="pci" type="radio" value="1">Yes</label><br>
                     <label><input name="pci" id="pci" type="radio" value="0">No</label>
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-4" id ="yes-pci" style="display:none">
                     <label>PCI vessel(s)</label>
                     <div class='input-group'>
                         <input name="pci_vessel" type='text' id='pci_vessel' class="form-control" autocomplete="off"/>
@@ -477,185 +484,4 @@ if (isset($_POST['annual_update'])) {
 </body>
 </html>
 
-<script type="text/javascript">
-
-    $(document).ready(function () {
-
-        // turn off cached entries
-        $("form :input").attr("autocomplete", "off");
-
-        $('#dialysisstartdate, #icddate, #ppacedate, #solidtumordate, #melanomadate').datepicker({
-            format: "yyyy-mm",
-            startView: "months",
-            minViewMode: "months"
-        });
-
-        $('#fup_date_').datepicker({
-            format: 'yyyy-mm-dd',
-            orientation: "top"
-        });
-
-        $('#ptlddate').datepicker({
-            format: 'yyyy-mm-dd'
-        });
-
-
-        //bind change on annual_year update
-        //$("input[name='dse_angio']:checked").on('change', function(){
-        $('#annual_year').on('change', function(){
-
-            var selection = $(this).val();
-            console.log("Selection"+selection);
-
-            if (selection == '') {
-                $('#annual_hide').hide();
-            } else {
-                $('#annual_hide').show();
-            }
-        });
-
-
-        //bind button for MRN lookup
-        $('#find_mrn').on('click', function () {
-            let formValues = {
-                "stanford_mrn": $("input#stanford_mrn.form-control").val(),
-                "last_name" : $("input#last_name.form-control").val(),
-                "search_mrn"  : true
-            };
-
-            $.ajax({
-                data: formValues,
-                method: "POST"
-            })
-                .done(function (data) {
-                    //console.log("DONE Adding update", data);
-                    //console.log("FFUP", parseInt(data.r_followup_dialysis));
-                    //console.log("DOT YEAR", data.dot_year);
-                    if (data.result === 'success') {
-                        $('.hidden-till-found').show();
-                        $('#found-row').show();
-                        $('#find_mrn').hide();
-                        $("input#dot_year").val(data.dot_year);
-                        $("input#transplant_num").val(data.transplant_num);
-
-                        alert(data.msg);
-                    } else {
-                        alert(data.msg);
-                    }
-
-                })
-                .fail(function (data) {
-                    //("DATA: ", data);
-                    alert("error:", data);
-                })
-                .always(function () {
-                });
-
-            return false;
-        });
-
-        //bind button for create new user
-        $('#annual_update').on('click', function () {
-            console.log("clicked annual_update");
-
-            /**  cannot seem to serialize form
-             $.each($('#annual_update').serializeArray(), function(i, field) {
-                formValues2[field.name] = field.value;
-                console.log(field.name, field.value);
-            });
-             */
-
-            let annual_year = $("#annual_year").val();
-
-            let codedValues = {
-                "dialysis" : $("input[name='dialysis']:checked").val(),
-                "icd"      : $("input[name='icd']:checked").val(),
-                "ppace"    : $("input[name='ppace']:checked").val(),
-                "ptld"     : $("input[name='ptld']:checked").val(),
-                "melanoma": $("input[name='melanoma']:checked").val(),
-                "solidtumor" : $("input[name='solidtumor']:checked").val(),
-                "tte"        : $("input[name='tte']:checked").val(),
-                "ttetype"    : $("input[name='ttetype']:checked").val(),
-                "dobutresponse"   : $("input[name='dobutresponse']:checked").val(),
-                "exerresponse"    : $("input[name='exerresponse']:checked").val(),
-                "nuclearresponse" : $("input[name='nuclearresponse']:checked").val(),
-                "coro_angio"      : $("input[name='coro_angio']:checked").val(),
-                "angio_result"    : $("input[name='angio_result']:checked").val(),
-                "pci"             : $("input[name='pci']:checked").val(),
-                "coro_angio"      : $("input[name='coro_angio']:checked").val(),
-            };
-
-            let dateValues = {
-                "fup_date_"            : $("input#fup_date_.form-control").val(),
-                "ptlddate"             : $("input#ptlddate.form-control").val()
-
-            };
-
-            let dateMonthValues = {
-                "dialysisstartdate"   : $("input#dialysisstartdate.form-control").val(),
-                "icddate"             : $("input#icddate.form-control").val(),
-                "ppacedate"           : $("input#ppacedate.form-control").val(),
-                "solidtumordate"       : $("input#solidtumordate.form-control").val(),
-                "melanomadate"         : $("input#melanomadate.form-control").val()
-            };
-
-            let textValues = {
-                "stanford_mrn": $("input#stanford_mrn.form-control").val(),
-                "dobutbllvef" : $("input#dobutbllvef.form-control").val(),
-                "exerbllvef"    : $("input#exerbllvef.form-control").val(),
-                "nuclearbllvef" : $("input#nuclearbllvef.form-control").val(),
-                "angiogram_mit" : $("input#angiogram_mit.form-control").val(),
-                "pci_vessel"    : $("input#pci_vessel.form-control").val()
-            };
-
-            var checkedValues = new Array();
-             $('.form-check-input:checked').each(function() {
-                 checkedValues.push($(this).val());
-                 // checkedValues["'"+$(this).val()+"'"]=1;
-             });
-
-             //(checkedValues);
-
-
-            let formValues = {
-                "codedValues"     : codedValues,
-                "dateValues"      : dateValues,
-                "textValues"      : textValues,
-                "dateMonthValues" : dateMonthValues,
-                "checkedValues"   : checkedValues,
-                "transplant_num"  : $("input#transplant_num.form-control").val(),
-                "dot"             : $("input#dot").val(),
-                "annual_year"     : $("#annual_year").val(),
-                "annual_update"   : true
-            };
-
-            $.ajax({ // create an AJAX call...
-                data: formValues, // get the form data
-                method: "POST"
-            })
-                .done(function (data) {
-                    //console.log("DONE Adding update", data);
-
-                    if (data.result === 'success') {
-                        alert(data.msg);
-                        location.reload();
-                    } else {
-                        alert(data.msg);
-                    }
-
-                })
-                .fail(function (data) {
-                    //console.log("DATA: ", data);
-                    alert("error:", data);
-                })
-                .always(function () {
-                });
-
-            return false;
-
-        });
-    });
-
-
-</script>
 

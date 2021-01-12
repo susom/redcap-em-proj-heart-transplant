@@ -627,7 +627,7 @@ class HeartTransplant extends \ExternalModules\AbstractExternalModule {
      * @return array
      * @throws \Exception
      */
-    function saveAnnualUpdate2($coded, $text, $date, $date_month, $checked, $transplant_num, $annual_year) {
+    function saveAnnualUpdate2($coded, $number, $text, $date, $date_month, $checked, $transplant_num, $annual_year) {
         $msg = array();
 
         //double check that the transplant number and dot didn't go missing in the return trip
@@ -662,6 +662,11 @@ class HeartTransplant extends \ExternalModules\AbstractExternalModule {
         $codedArray = array();
         foreach ($coded as $field_name => $field_value) {
             $codedArray[$field_name.$annual_year] = db_escape($field_value);
+        }
+
+        $numberArray = array();
+        foreach ($number as $field_name => $field_value) {
+            $numberArray[$field_name.$annual_year] = $field_value;
         }
 
         $textArray = array();
@@ -736,6 +741,7 @@ class HeartTransplant extends \ExternalModules\AbstractExternalModule {
         $data = array_merge(
             array(REDCap::getRecordIdField() => $transplant_num),
             $codedArray,
+            $numberArray,
             $textArray,
             $dateArray,
             $dateMonthArray,
