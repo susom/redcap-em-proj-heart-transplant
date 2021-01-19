@@ -365,56 +365,72 @@ if (isset($_POST['annual_update'])) {
             </div>
 
             <div class="form-row">
-                <div class="form-group col-md-3">
-                    <label>Dobutamine Stress Baseline LVEF</label>
-                    <div class='input-group date'>
-                        <input name="dobutbllvef" type="number" min="1" max="100" id='dobutbllvef' class="form-control" autocomplete="off"/>
+                <div class="form-group col-md-3"><p>Was LVEF assessed?</p></div>
+                <div class="form-group col-md-1" id="r_lvefassess">
+                    <label><input name="lvefassess" id="lvefassess" type="radio" value="1">Yes</label><br>
+                    <label><input name="lvefassess" id="lvefassess" type="radio" value="0">No</label>
+                </div>
+                <div class="form-group col-md-4 yes-lvefassess" id ="yes-lvefassess" style="display:none">
+                    <label>LVEF (%)</label>
+                    <div class='input-group'>
+                        <input name="lvefval" type="number" min="0" max="100" id='lvefval' class="form-control" autocomplete="off"/>
                     </div>
                 </div>
-                <div class="col-md-1"></div>
+            </div>
 
-                <div class="form-group col-md-2"><p>Response to dobutamine stress</p></div>
+
+            <div class="form-row yes-lvefassess" style="display:none">
+                <div class="form-group col-md-4"> <label>Which of the follower were performed?</label></div>
                 <div class="form-group col-md-3">
+                    <label class="form-check-label"><input type="checkbox" class="form-check-input" id="diagnostic___1"
+                                                           value="diagnostic___1">Transthoracic Echo</label>
+                </div>
+
+            </div>
+            <div class="form-row yes-lvefassess" style="display:none">
+                <div class="form-group col-md-4"></div>
+                <div class="form-group col-md-3">
+                    <label class="form-check-label"><input type="checkbox" class="form-check-input" id="diagnostic___2"
+                                                           value="diagnostic___2">Dobutamine Stress Echo</label>
+                </div>
+
+                <div class="form-group col-md-1  show-2" style="display:none"><p>Result: </p></div>
+                <div class="form-group col-md-3  show-2" style="display:none">
                     <label><input name="dobutresponse" id="dobutresponse" type="radio" value="1"> No inducible ischemia</label><br>
                     <label><input name="dobutresponse" id="dobutresponse" type="radio" value="2"> Inducible ischemia</label><br>
                     <label><input name="dobutresponse" id="dobutresponse" type="radio" value="3"> Non-diagnostic</label>
                 </div>
             </div>
-
-            <div class="form-row">
+            <div class="form-row yes-lvefassess" style="display:none">
+                <div class="form-group col-md-4"></div>
                 <div class="form-group col-md-3">
-                    <label>Exercises Baseline LVEF</label>
-                    <div class='input-group date'>
-                        <input name="exerbllvef" type="number" min="1" max="100" id='exerbllvef' class="form-control" autocomplete="off"/>
-                    </div>
+                    <label class="form-check-label"><input type="checkbox" class="form-check-input" id="diagnostic___3"
+                                                           value="diagnostic___3">Exercise Stress</label>
                 </div>
-                <div class="col-md-1"></div>
 
-                <div class="form-group col-md-2"><p>Response to exercise stress</p></div>
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-1 show-3" style="display:none"><p>Result: </p></div>
+                <div class="form-group col-md-3 show-3" style="display:none">
                     <label><input name="exerresponse" id="exerresponse" type="radio" value="1"> No inducible ischemia</label><br>
                     <label><input name="exerresponse" id="exerresponse" type="radio" value="2"> Inducible ischemia</label><br>
                     <label><input name="exerresponse" id="exerresponse" type="radio" value="3"> Non-diagnostic</label>
-                </div>
-            </div>
-
-            <div class="form-row"><br>
-                <div class="form-group col-md-3">
-                    <label>Nuclear baseline LVEF </label>
-                    <div class='input-group date'>
-                        <input name="nuclearbllvef" type="number" min="1" max="100" id='nuclearbllvef' class="form-control" autocomplete="off"/>
                     </div>
+            </div>
+            <div class="form-row yes-lvefassess" style="display:none">
+                <div class="form-group col-md-4"></div>
+                <div class="form-group col-md-3">
+                    <label class="form-check-label"><input type="checkbox" class="form-check-input" id="diagnostic___4"
+                                                           value="diagnostic___4">Nuclear Echo</label>
                 </div>
 
-                <div class="col-md-1"></div>
-
-                <div class="form-group col-md-2"><p>Response to nuclear</p></div>
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-1 show-4" style="display:none"><p>Result: </p></div>
+                <div class="form-group col-md-3 show-4" style="display:none">
                     <label><input name="nuclearresponse" id="nuclearresponse" type="radio" value="1"> No inducible ischemia</label><br>
                     <label><input name="nuclearresponse" id="nuclearresponse" type="radio" value="2"> Inducible ischemia</label><br>
                     <label><input name="nuclearresponse" id="nuclearresponse" type="radio" value="3"> Non-diagnostic</label>
                 </div>
             </div>
+
+
 
             <div class="form-row"><br>
                 <div class="form-group col-md-3"><p>Coronary Angiogram</p></div>

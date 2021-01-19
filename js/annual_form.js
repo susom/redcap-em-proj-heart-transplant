@@ -147,6 +147,15 @@ $(document).ready( function() {
         }
     });
 
+    $('#r_lvefassess').on('change', function() {
+
+        if ($("input[name='lvefassess']:checked").val() == '1') {
+            $('.yes-lvefassess').show();
+        } else {
+            $('.yes-lvefassess').hide();
+        }
+    });
+
     $('#r_angio').on('change', function() {
 
         if ($("input[name='coro_angio']:checked").val() == '1') {
@@ -163,6 +172,27 @@ $(document).ready( function() {
             $('#yes-pci').show();
         } else {
             $('#yes-pci').hide();
+        }
+    });
+
+
+    $('.yes-lvefassess').on('change', function() {
+        if ($("#diagnostic___2:checked").val() == 'diagnostic___2') {
+            $('.show-2').show();
+        } else {
+            $('.show-2').hide();
+        }
+
+        if ($("#diagnostic___3:checked").val() == 'diagnostic___3') {
+            $('.show-3').show();
+        } else {
+            $('.show-3').hide();
+        }
+
+        if ($("#diagnostic___4:checked").val() == 'diagnostic___4') {
+            $('.show-4').show();
+        } else {
+            $('.show-4').hide();
         }
     });
 
