@@ -380,7 +380,7 @@ if (isset($_POST['annual_update'])) {
 
 
             <div class="form-row yes-lvefassess" style="display:none">
-                <div class="form-group col-md-4"> <label>Which of the follower were performed?</label></div>
+                <div class="form-group col-md-4"> <label>Which of the following were performed?</label></div>
                 <div class="form-group col-md-3">
                     <label class="form-check-label"><input type="checkbox" class="form-check-input" id="diagnostic___1"
                                                            value="diagnostic___1">Transthoracic Echo</label>
