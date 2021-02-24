@@ -61,9 +61,8 @@ if (isset($_POST['search_mrn'])) {
 if (isset($_POST['annual_update'])) {
     //$module->emDebug($_REQUEST);
 
-    $status = $module->saveAnnualUpdate2($_POST['codedValues'], $_POST['numberValues'], $_POST['textValues'], $_POST['dateValues'],
-                                        $_POST['dateMonthValues'], $_POST['checkedValues'], $_POST['transplant_num'],
-    $_POST['annual_year']);
+    $status = $module->saveAnnualUpdateMultiYear($_POST['codedValues'], $_POST['numberValues'], $_POST['textValues'], $_POST['dateValues'],
+                                        $_POST['dateMonthValues'], $_POST['checkedValues'], $_POST['transplant_num'], $_POST['annual_year']);
 
     if ($status['status'] === true) {
         $result = array(

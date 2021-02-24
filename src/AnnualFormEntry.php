@@ -9,9 +9,9 @@ $sunet_id = $_SERVER['WEBAUTH_USER'];
 
 $module->emDebug("Starting Heart Transplant : Annual Form Entry by " . $user . " : " . $sunet_id);
 
-$api_url = $module->getUrl("src/AnnualFormEntry.php", true, true);
-$no_api_url = $module->getUrl("src/AnnualFormEntry.php", true, false);
-$module->emDebug($api_url, $no_api_url);
+//$api_url = $module->getUrl("src/AnnualFormEntry.php", true, true);
+//$no_api_url = $module->getUrl("src/AnnualFormEntry.php", true, false);
+//$module->emDebug($api_url, $no_api_url);
 
 if (isset($_POST['search_mrn'])) {
     $status = $module->determineDateOfTransplant($_POST['stanford_mrn'], $_POST['last_name']);
