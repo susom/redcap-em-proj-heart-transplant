@@ -342,6 +342,10 @@ class HeartTransplant extends \ExternalModules\AbstractExternalModule {
             //return $status;
         }
 
+        //get last followup date
+        $latest_update = $this->getLatestUpdateDate($save_id, $dot);
+
+/***i don't think this ended up being used
         //get the autopopulate data
         $autopopulate_data = array(
             REDCap::getRecordIdField(),
@@ -365,6 +369,10 @@ class HeartTransplant extends \ExternalModules\AbstractExternalModule {
         $status['r_post_dialysis_date'] = $cands[0]['r_post_dialysis_date'];
         $status['post_icd']             = $cands[0]['post_icd'];
         $status['post_icd_date']        = $cands[0]['post_icd_date'];
+ */
+
+        //return the latest update
+        $status['latest_update']        = $latest_update;
 
         return $status;
 
@@ -373,6 +381,41 @@ class HeartTransplant extends \ExternalModules\AbstractExternalModule {
         //$this->emDebug("TRANSPLANT NUMBER: ".$save_id,$data);
     }
 
+    function getLatestUpdateDate($record_id, $dot ) {
+        $latest_update = $dot;
+
+        $fup_dates = array('fup_date_mo3','fup_date_mo6');
+        for ($i=1; $i <= 31; $i++) {
+            $fup_dates[] = 'fup_date_yr'.$i;
+        }
+
+
+        $params = array(
+            'return_format'    => 'json',
+            'records'          => $record_id,
+            'fields'           => array_merge(array(REDCap::getRecordIdField()),$fup_dates)
+        );
+
+        $q = REDCap::getData($params);
+        $r = current(json_decode($q, true));
+
+        //sanity check that we hae the right record
+        if ($r[REDCap::getRecordIdField()] !== $record_id) {
+            $this->emError("Got the wrong transplant number! Abort!");
+            return null;
+        }
+
+        //iterate over the fup_dates and return the latest date.
+        foreach($fup_dates as $cand_date) {
+            if (strtotime($r[$cand_date]) > strtotime($latest_update)) {
+                $this->emDebug("found a new update date: $latest_update vs ".$r[$cand_date]);
+                $latest_update = $r[$cand_date];
+            }
+        }
+
+        return $latest_update;
+
+    }
 
     /**
      *

@@ -34,6 +34,7 @@ $(document).ready( function() {
                     $('#find_mrn').hide();
                     $("input#dot_year").val(data.dot_year);
                     $("input#transplant_num").val(data.transplant_num);
+                    $('#latest_update').text(data.latest_update);
 
                     alert(data.msg);
                 } else {

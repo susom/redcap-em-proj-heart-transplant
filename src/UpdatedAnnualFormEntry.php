@@ -12,9 +12,11 @@ $module->emDebug("Starting Heart Transplant : Annual Form Entry by user: " . $us
 $api_url = $module->getUrl("src/UpdatedAnnualFormEntry.php", true, true);
 $no_api_url = $module->getUrl("src/UpdatedAnnualFormEntry.php", true, false);
 //$module->emDebug($api_url, $no_api_url);
+$latest_update = "";
 
 if (isset($_POST['search_mrn'])) {
     $status = $module->determineDateOfTransplant($_POST['stanford_mrn'], $_POST['last_name']);
+    $latest_update = $status['latest_update'];
 
 
     if ($status['status'] === true) {
@@ -34,10 +36,7 @@ if (isset($_POST['search_mrn'])) {
                 'result'               => 'success',
                 'dot_year'             => $status['dot_year'],
                 'transplant_num'       => $status['transplant_num'],
-                'r_followup_dialysis'  => $status['r_followup_dialysis'],
-                'r_post_dialysis_date' => $status['r_post_dialysis_date'],
-                'post_icd'             => $status['post_icd'],
-                'post_icd_date'        => $status['post_icd_date'],
+                'latest_update'        => $status['latest_update'],
                 'msg'                  => $status['msg']
             );
         }
@@ -130,7 +129,7 @@ if (isset($_POST['annual_update'])) {
 
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-    <link rel="stylesheet" type="text/css" href="<?php echo $module->getUrl("css/AnnualFormEntry.css", true, true) ?>" />
+    <link rel="stylesheet" type="text/css" href="<?php echo $module->getUrl("css/UpdatedAnnualFormEntry.css", true, true) ?>" />
 
 
 </head>
@@ -212,13 +211,19 @@ if (isset($_POST['annual_update'])) {
                 <input type="hidden" class="form-control" id="transplant_num">
             </div>
         </div>
+
             <br>
         <hr>
 
         <div id="annual_hide" style="display:none">
+            <div id="update_info">
+                Date of last update was <p id="latest_update"></p>.
+                Please enter any updates since that date.
+            </div>
+
 
             <div class="form-row">
-                <div class="form-group col-md-3"><p>Did dialysis start in past year?</p></div>
+                <div class="form-group col-md-3"><p>Did dialysis start?</p></div>
                 <div class="form-group col-md-1" id="r_dialysis" >
                     <input name="dialysis" id="dialysis" type="radio" value="1"> Yes</><br>
                     <input name="dialysis" id="dialysis" type="radio" value="0"> No</>
@@ -249,7 +254,7 @@ if (isset($_POST['annual_update'])) {
             </div>
 
             <div class="form-row">
-                <div class="form-group col-md-3"><p>Permanent Pacemaker past year?</p></div>
+                <div class="form-group col-md-3"><p>Permanent Pacemaker?</p></div>
                 <div class="form-group col-md-1"  id="r_ppace">
                     <label><input name="ppace" id="ppace" type="radio" value="1"> Yes</label><br>
                     <label><input name="ppace" id="ppace" type="radio" value="0"> No</label>
@@ -264,7 +269,7 @@ if (isset($_POST['annual_update'])) {
             </div>
 
             <div class="form-row">
-                <div class="form-group col-md-3"><p>PTLD Diagnosis in past year?</p></div>
+                <div class="form-group col-md-3"><p>PTLD Diagnosis?</p></div>
                 <div class="form-group col-md-1" id="r_ptld">
                     <label><input name="ptld" id="ptld" type="radio" value="1"> Yes</label><br>
                     <label><input name="ptld" id="ptld" type="radio" value="0"> No</label>
@@ -280,7 +285,7 @@ if (isset($_POST['annual_update'])) {
 
 
             <div class="form-row">
-                <div class="form-group col-md-3"><p>Solid organ tumor diagnosis in past year?</p></div>
+                <div class="form-group col-md-3"><p>Solid organ tumor diagnosis?</p></div>
                 <div class="form-group col-md-1" id="r_solidtumor">
                     <label><input name="solidtumor" id="solidtumor" type="radio" value="1">Yes</label><br>
                     <label><input name="solidtumor" id="solidtumor" type="radio" value="0">No</label>
@@ -335,31 +340,17 @@ if (isset($_POST['annual_update'])) {
 
 
             <div class="form-row">
-                <div class="form-group col-md-3"><p>Melanoma diagnosis in past year?</p></div>
+                <div class="form-group col-md-3"><p>Melanoma diagnosis?</p></div>
                 <div class="form-group col-md-1" id="r_melanoma">
                     <label><input name="melanoma" id="melanoma" type="radio" value="1">Yes</label><br>
                     <label></label><input name="melanoma" id="melanoma" type="radio" value="0">No</label>
                 </div>
                 <div class="form-group col-md-4" id ="yes-melanoma" style="display:none">
-                    <label>Melanoma in past year date</label>
+                    <label>Melanoma date</label>
                     <div class='input-group date'>
                         <input name="melanomadate" type='text' id='melanomadate' class="form-control" autocomplete="off"/>
                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                     </div>
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group col-md-3"><p>Transthoracic Echo?</p></div>
-                <div class="form-group col-md-1" id="r_tte">
-                    <label><input name="tte" id="tte" type="radio" value="1">Yes</label><br>
-                    <label><input name="tte" id="tte" type="radio" value="0">No</label>
-                </div>
-                <div class="form-group col-md-2 yes-tte" style="display:none"><p>TTE type</p></div>
-                <div class="form-group col-md-4 yes-tte" style="display:none">
-                    <label><input name="ttetype" id="ttetype" type="radio" value="1"> Dobutamine stress</label><br>
-                    <label><input name="ttetype" id="ttetype" type="radio" value="2"> Exercise stress</label><br>
-                    <label><input name="ttetype" id="ttetype" type="radio" value="3"> Nuclear imaging</label>
                 </div>
             </div>
 
@@ -418,7 +409,7 @@ if (isset($_POST['annual_update'])) {
                 <div class="form-group col-md-4"></div>
                 <div class="form-group col-md-3">
                     <label class="form-check-label"><input type="checkbox" class="form-check-input" id="diagnostic___4"
-                                                           value="diagnostic___4">Nuclear Echo</label>
+                                                           value="diagnostic___4">Nuclear Stress Test</label>
                 </div>
 
                 <div class="form-group col-md-1 show-4" style="display:none"><p>Result: </p></div>

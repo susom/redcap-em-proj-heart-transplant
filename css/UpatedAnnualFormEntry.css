@@ -1,0 +1,7 @@
+#latest_update {
+    white-space: nowrap;
+    display: inline-block;
+}
+#update_info {
+    color: red;
+}
