@@ -335,7 +335,7 @@ if (isset($_POST['annual_update'])) {
                                                                value="solidtumortype___99">Other</label>
                     </div>
                 </div>
-                </--div>
+
             </div>
 
 
@@ -451,10 +451,27 @@ if (isset($_POST['annual_update'])) {
                     <label><input name="pci" id="pci" type="radio" value="1">Yes</label><br>
                     <label><input name="pci" id="pci" type="radio" value="0">No</label>
                 </div>
-                <div class="form-group col-md-4" id ="yes-pci" style="display:none">
-                    <label>PCI vessel(s)</label>
-                    <div class='input-group'>
-                        <input name="pci_vessel" type='text' id='pci_vessel' class="form-control" autocomplete="off"/>
+                <div class="form-group col-md-6" id="yes-pci" style="display:none">
+                    <label for="pci_vessel">PCI Vessels</label>
+                    <div class="form-check">
+                        <label class="form-check-label"><input type="checkbox" class="form-check-input"
+                                                               value="pci_vessel___1">Left main (LM)</label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label"><input type="checkbox" class="form-check-input"
+                                                               value="pci_vessel___2">Left anterior descending (LAD)</label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label"><input type="checkbox" class="form-check-input"
+                                                               value="pci_vessel___3">Ramus intermedius (RI)</label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label"><input type="checkbox" class="form-check-input"
+                                                               value="pci_vessel___4">Left circumflex or branches (LCx)</label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label"><input type="checkbox" class="form-check-input"
+                                                               value="pci_vessel___5">Right coronary artery or branches (RCA)</label>
                     </div>
                 </div>
             </div>
