@@ -38,7 +38,7 @@
         "url": "PatientHomepage.php"
       },
       {
-        "name": "DEMO: NEW: Enter annual update for an existing record",
+        "name": "UPDATED: Enter annual update for an existing record",
         "icon": "gear",
         "url": "src/UpdatedAnnualFormEntry.php"
       }
@@ -47,7 +47,8 @@
   "no-auth-pages": [
     "src/EditDeathData",
     "src/NewTransplantEntry",
-    "src/AnnualFormEntry"
+    "src/AnnualFormEntry",
+    "src/UpdatedAnnualFormEntry"
   ],
 
   "system-settings": [
