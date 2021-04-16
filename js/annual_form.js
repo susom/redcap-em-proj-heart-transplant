@@ -5,6 +5,12 @@ annual_form.init = function () {
     console.log("Starting the updated annual form");
 };
 
+//do not submit on enter
+$(document).on("keydown", ":input:not(textarea)", function(event) {
+    if (event.key == "Enter") {
+        event.preventDefault();
+    }
+});
 
 $(document).ready( function() {
     annual_form.init();
