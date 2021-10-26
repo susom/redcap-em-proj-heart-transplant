@@ -125,7 +125,7 @@ if (isset($_POST['annual_update'])) {
             src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 
 
-    <script type='text/javascript' src="<?php echo $module->getUrl('/js/annual_form.js', true, true) ?>"></script>
+    <script type='text/javascript' src="<?php echo $module->getUrl('js/annual_form.js', false, true) ?>"></script>
 
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
