@@ -5,6 +5,8 @@
 
   "description": "A module for the Heart Transplant Database",
 
+  "framework": 12,
+
   "authors": [
     {
       "name": "Jae Lee",
@@ -44,6 +46,7 @@
       }
     ]
   },
+
   "no-auth-pages": [
     "src/EditDeathData",
     "src/NewTransplantEntry",

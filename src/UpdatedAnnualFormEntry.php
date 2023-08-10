@@ -3,8 +3,8 @@
 namespace Stanford\HeartTransplant;
 /*** @var \Stanford\HeartTransplant\HeartTransplant $module */
 
-
-$user = USERID;
+$UserObj = $module->getUser();
+$user = $user->getUsername(); // USERID;
 $sunet_id = $_SERVER['WEBAUTH_USER'];
 
 $module->emDebug("Starting Heart Transplant : Annual Form Entry by user: " . $user . " / sunet_id:  " . $sunet_id);
