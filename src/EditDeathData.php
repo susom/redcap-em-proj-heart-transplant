@@ -3,9 +3,9 @@
 namespace Stanford\HeartTransplant;
 /*** @var \Stanford\HeartTransplant\HeartTransplant $module */
 
-$user = USERID;
+//$user = USERID;
 $sunet_id = $_SERVER['WEBAUTH_USER'];
-$module->emDebug("Starting Heart Transplant : Edit Death Data by ". $user . " : " . $sunet_id);
+$module->emDebug("Starting Heart Transplant : Edit Death Data by ". $sunet_id);
 
 $api_url = $module->getUrl("src/EditDeathData.php", true, true);
 $no_api_url = $module->getUrl("src/EditDeathData.php", true, false);

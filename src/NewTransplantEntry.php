@@ -4,10 +4,10 @@ namespace Stanford\HeartTransplant;
 /*** @var \Stanford\HeartTransplant\HeartTransplant $module */
 
 
-$user = USERID;
+//$user = USERID;
 $sunet_id = $_SERVER['WEBAUTH_USER'];
 
-$module->emDebug("Starting Heart Transplant : New Transplant Entry by " . $user . " : " . $sunet_id);
+$module->emDebug("Starting Heart Transplant : New Transplant Entry by " . $sunet_id);
 
 $api_url = $module->getUrl("src/NewTransplantEntry.php", true, true);
 $no_api_url = $module->getUrl("src/NewTransplantEntry.php", true, false);
