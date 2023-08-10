@@ -3,11 +3,15 @@
 namespace Stanford\HeartTransplant;
 /*** @var \Stanford\HeartTransplant\HeartTransplant $module */
 
-$UserObj = $module->getUser();
-$user = $user->getUsername(); // USERID;
+//$UserObj = $module->getUser();  //this does not work?
+//$user = $user->getUsername(); // USERID;
+
+//$user = $module->getUser()->getUserName(); //USERID
+
 $sunet_id = $_SERVER['WEBAUTH_USER'];
 
-$module->emDebug("Starting Heart Transplant : Annual Form Entry by user: " . $user . " / sunet_id:  " . $sunet_id);
+//$module->emDebug("Starting Heart Transplant : Annual Form Entry by user: " . $user . " / sunet_id:  " . $sunet_id);
+$module->emDebug("Starting Heart Transplant : Annual Form Entry by sunet_id:  " . $sunet_id);
 
 $api_url = $module->getUrl("src/UpdatedAnnualFormEntry.php", true, true);
 $no_api_url = $module->getUrl("src/UpdatedAnnualFormEntry.php", true, false);
